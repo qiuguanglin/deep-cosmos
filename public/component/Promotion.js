@@ -10,7 +10,6 @@ class PromotionPanel extends Component{
   }
 
   componentDidMount(){
-    // setTimeout(()=>this.setState({test: 'no'}), 3000);
     const fakeData = {
       desc: '火星五天四夜游，攀登火星最高峰奥林匹斯山，黄昏浪漫看日落，早上温馨看地出，来回飞船价钱',
       price: 40000
@@ -40,11 +39,11 @@ class PromotionPanel extends Component{
     : null;
 
     const loadingStatus = (isLoaded && promotions.length) ?
-    'PROMOTIONS' : <span className="loadingStatus">{'LOADING'}</span>;
+    'PROMOTIONS' : <span className="loadingStatus"><strong>{'LOADING'}</strong></span>;
 
     return(
       <div id="promotion">
-        <h2 id="promotion-header">本月团购 - {loadingStatus}</h2>
+        <h2 id="promotion-header">本月特惠 - {loadingStatus}</h2>
         <div id="promotion-info">
           {promotionPad}
         </div>

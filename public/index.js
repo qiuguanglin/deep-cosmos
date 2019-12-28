@@ -5,6 +5,7 @@ import TopPanel from './component/Top';
 import SearchPanel from './component/Search';
 import SearchResultPanel from './component/SearchResult';
 import PromotionPanel from './component/Promotion';
+import FooterPanel from './component/Footer';
 
 class App extends Component{
   constructor(){
@@ -43,6 +44,7 @@ class App extends Component{
         <SearchPanel onSearchResult={this.onSearchResult}/>
         <SearchResultPanel results={searchResults}/>
         <PromotionPanel/>
+        <FooterPanel/>
       </div>
     )
   }
