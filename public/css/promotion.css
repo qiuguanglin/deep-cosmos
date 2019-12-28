@@ -47,3 +47,24 @@
   font-size: 1.4em;
   color: RED;
 }
+
+.loadingStatus{
+  animation-name: loading;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes loading {
+  0%{
+    color: #ffffff
+  }
+  30%{
+    color:#ff6969
+  }
+  60%{
+    color:#f50000
+  }
+  100%{
+    color:#ffffff
+  }
+}

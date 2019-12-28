@@ -4,6 +4,7 @@ import Navigation from './component/Navigation';
 import TopPanel from './component/Top';
 import SearchPanel from './component/Search';
 import SearchResultPanel from './component/SearchResult';
+import PromotionPanel from './component/Promotion';
 
 class App extends Component{
   constructor(){
@@ -32,14 +33,16 @@ class App extends Component{
   }
 
   render(){
+    const {isLoggedin, searchResults} = this.state;
     return(
       <div>
         <Navigation onLanguageChanged={this.onLanguageChanged}
         onLoginStatusChanged={this.onLoginStatusChanged}
-        isLoggedin={this.state.isLoggedin}/>
+        isLoggedin={isLoggedin}/>
         <TopPanel/>
         <SearchPanel onSearchResult={this.onSearchResult}/>
-        <SearchResultPanel results={this.state.searchResults}/>
+        <SearchResultPanel results={searchResults}/>
+        <PromotionPanel/>
       </div>
     )
   }
