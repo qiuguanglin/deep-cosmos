@@ -1,0 +1,31 @@
+#searchResult{
+  border-bottom: 1px solid gray;
+}
+
+#searchResult table{
+  width: 100%;
+  margin: auto;
+  padding: 0px;
+  border-collapse:collapse;
+}
+
+#searchResult table tr{
+  background-color: #b2bbbe;
+  line-height: 30px;
+}
+
+#searchResult table tr:hover{
+  background-color: #93b5cf;
+  cursor: pointer;
+}
+
+#searchResult table tr td{
+  padding: 4px 50px;
+}
+
+#searchResult th{
+  background-color: #144a74;
+  padding: 6px 10px;
+  color: #ffffff;
+  line-height: 40px;
+}

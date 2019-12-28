@@ -1,0 +1,86 @@
+#topPanel{
+  height: 70%;
+  color: #ffffff;
+  animation-name: topPanelAni;
+  animation-duration: 16s;
+  animation-iteration-count: infinite;
+  position: relative;
+}
+
+#logo{
+  font-family: Impact;
+  font-size: 60px;
+  position: absolute;
+  margin: 3% 0 0 15%;
+  animation-name: logo-ani;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+#caption{
+  font-size: 50px;
+}
+
+#desc-title{
+  border-bottom: 2px solid #ffffff
+}
+
+#description{
+  position: absolute;
+  left: 15%;
+  top: 25%;
+}
+
+#img-window{
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  border:1px solid #ffffff;
+  width: 500px;
+}
+
+.display-img{
+  width: 100%;
+  height: 300px;
+}
+.display-desc{
+  padding: 10px 20px;
+  font-size: 15px;
+  text-align: center;
+  margin: 0px;
+  background-color: #8a988e;
+  color: #ffffff;
+}
+#img-window, .display-img{
+  border-radius: 12px 12px 0px 0px;
+}
+
+@keyframes topPanelAni {
+  0%{
+    background-color: #101f30;
+  }
+  20%{
+    background-color: #144a74;
+  }
+  40%{
+    background-color: #1677b3;
+  }
+  60%{
+    background-color: #2474b5;
+  }
+  100%{
+    background-color: #101f30;
+  }
+}
+
+@keyframes logo-ani {
+  0%{
+    color: #ffffff;
+  }
+  50%{
+    color: #feba07;
+  }
+  100%{
+    color: #ffffff;
+  }
+}

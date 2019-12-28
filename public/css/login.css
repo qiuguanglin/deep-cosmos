@@ -1,0 +1,27 @@
+#login-panel{
+  position: absolute;
+  width: 200px;
+  left: 50%;
+  top: 50%;
+  border: 1px solid gray;
+  border-radius: 2%;
+  font-size: 15px;
+  box-shadow: 1px 1px 6px 1px black;
+}
+#login-panel form{
+  padding: 10px;
+}
+
+#legend{
+  margin: 0px;
+  padding: 4px;
+  background-color: orange;
+}
+
+.user-service{
+  font-size: 12px;
+}
+.user-service:hover{
+  color: red;
+  cursor: pointer;
+}

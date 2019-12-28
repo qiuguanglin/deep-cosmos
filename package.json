@@ -1,0 +1,38 @@
+{
+  "name": "deepspace",
+  "version": "1.0.0",
+  "main": "./public/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "webpack-dev-server --mode development --open",
+    "build": "webpack-cli --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qiuguanglin/deep-cosmos.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qiuguanglin/deep-cosmos/issues"
+  },
+  "homepage": "https://github.com/qiuguanglin/deep-cosmos#readme",
+  "description": "",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.1.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}
