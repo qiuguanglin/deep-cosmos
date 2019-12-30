@@ -11,7 +11,7 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
-      isLoggedin: true,
+      isLoggedin: false,
       language: 'schn',
       searchResults: []
     }
@@ -19,6 +19,10 @@ class App extends Component{
     this.onLanguageChanged = this.onLanguageChanged.bind(this);
     this.onLoginStatusChanged = this.onLoginStatusChanged.bind(this);
     this.onSearchResult = this.onSearchResult.bind(this);
+  }
+
+  componentDidMount(){
+    console.log('mounted')
   }
 
   onLanguageChanged(e){

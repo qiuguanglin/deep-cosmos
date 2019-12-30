@@ -1,6 +1,5 @@
 #promotion{
   background-image: url('../resource/straws-tileable.jpg');
-  margin: auto;
   width: 100%;
   border-bottom: 1px solid gray;
   padding-top: 30px;
@@ -10,9 +9,6 @@
   display: grid;
   grid-template-columns: 3fr 3fr 3fr;
   grid-template-rows: auto;
-  grid-template-areas:
-  "header header"
-  "content content content"
 }
 
 #promotion-header{
@@ -50,21 +46,24 @@
 
 .loadingStatus{
   animation-name: loading;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-iteration-count: infinite;
 }
 
 @keyframes loading {
   0%{
-    color: #ffffff
+    opacity: 1
   }
   30%{
-    color:#f2c44b
+    opacity: 0.8
   }
   60%{
-    color:#feba07
+    opacity: 0.4
+  }
+  80%{
+    opacity: 0
   }
   100%{
-    color:#ffffff
+    opacity: 1
   }
 }

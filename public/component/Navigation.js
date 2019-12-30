@@ -20,7 +20,7 @@ const Logout = ()=><span>退出</span>;
 const Login = ()=>{
   return(
     <span>
-        <a href="#"><img src="./resource/icon/user-icon.png"/> 登陆</a>
+        <a href="./login.html"><img src="./resource/icon/user-icon.png"/> 登陆</a>
         <a href="#"><img src="./resource/icon/user-icon-2.png"/> 注册</a>
     </span>
   );

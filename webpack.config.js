@@ -4,10 +4,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, './public/index.js'),
+  entry: {
+    'index': path.resolve(__dirname, './public/index.js'),
+    'login': path.resolve(__dirname, './public/login.js'),
+  },
   output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'bundle.js'
+      filename: '[name].bundle.js'
   },
   module: {
     rules: [
@@ -22,8 +25,14 @@ module.exports = {
   },
   plugins: [
     new HTMLWebPackPlugin({
-      template: "./public/anotherIndex.html",
-      filename: "./index.html"
+      template: "./public/index.html",
+      filename: "./index.html",
+      chunks: ['index']
+    }),
+    new HTMLWebPackPlugin({
+      template: "./public/login.html",
+      filename: "./login.html",
+      chunks: ['login']
     }),
     new CopyWebpackPlugin([
       { from: 'public/resource' , to: 'resource' },
