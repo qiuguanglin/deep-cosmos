@@ -9,7 +9,7 @@ body{
 
 #tabs{
   margin: auto;
-  width: 300px;
+  width: 360px;
 }
 
 #tabs button{
@@ -19,7 +19,7 @@ body{
 }
 
 .onFocus{
-  color: red;
+  color: #000000;
   border: 0px;
   border-bottom: 1px solid Gray;
 }
@@ -32,9 +32,9 @@ body{
   font-size: 15px;
 }
 
-#regedit p{
+.hint{
   font-size: 12px;
-  color: red;
+  color: green;
 }
 
 #legend{
@@ -45,16 +45,17 @@ body{
   font-family: Serif, "Times New Roman";
 }
 
-#forget-pass{
-  font-size: 12px;
-  color: red;
-}
-
 #deep{
   color: #ff0000;
 }
 #cosmos{
   color: Orange;
+}
+
+.notation{
+  font-size: 14px;
+  color: red;
+  font-weight: bold;
 }
 
 .submit{
@@ -70,14 +71,4 @@ body{
   line-height: 24px;
   border: 0px;
   border-bottom: 1px solid Gray;
-}
-
-.normal{
-  display: none;
-}
-
-.alarm{
-  display: block;
-  color: red;
-  font-size: 12px;
 }

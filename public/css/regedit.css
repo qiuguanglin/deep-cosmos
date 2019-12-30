@@ -1,0 +1,14 @@
+.normal{
+  display: none;
+}
+
+.alarm{
+  display: block;
+  color: red;
+  font-size: 12px;
+}
+
+#forget-pass{
+  font-size: 12px;
+  color: green;
+}
