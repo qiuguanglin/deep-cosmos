@@ -7,34 +7,40 @@ import SearchResultPanel from './component/SearchResult';
 import PromotionPanel from './component/Promotion';
 import FooterPanel from './component/Footer';
 import SigninPanel from './component/Signin';
+import {AmIin} from './rest/UserRestful';
 
 class App extends Component{
   constructor(){
     super();
     this.state = {
-      isLoggedin: false,
+      loginFlag: false,
       language: 'schn',
       searchResults: [],
       wannaSignin: false,
     }
 
     this.onLanguageChanged = this.onLanguageChanged.bind(this);
-    this.onLoginStatusChanged = this.onLoginStatusChanged.bind(this);
+    this.onSigninStatus = this.onSigninStatus.bind(this);
+    this.onSignoutStatus = this.onSignoutStatus.bind(this);
     this.onSearchResult = this.onSearchResult.bind(this);
     this.onWannaSignInChange = this.onWannaSignInChange.bind(this);
     this.onClosingSigninBox = this.onClosingSigninBox.bind(this);
   }
 
   componentDidMount(){
-    console.log('mounted')
+    AmIin((err, data)=>this.setState({loginFlag: err ? false : data.success}));
   }
 
   onLanguageChanged(e){
     console.log(e.target.value)
   }
 
-  onLoginStatusChanged(){
-    console.log()
+  onSigninStatus(loginFlag){
+    this.setState({loginFlag: loginFlag});
+  }
+
+  onSignoutStatus(signoutFlag){
+    this.setState({loginFlag: signoutFlag});
   }
 
   onSearchResult(results){
@@ -50,15 +56,18 @@ class App extends Component{
   }
 
   render(){
-    const {isLoggedin, searchResults, wannaSignin} = this.state;
+    const {loginFlag, searchResults, wannaSignin} = this.state;
     return(
       <div>
-        {wannaSignin ? <SigninPanel onClosingSigninBox={this.onClosingSigninBox}/> : null}
+        {wannaSignin ? <SigninPanel onClosingSigninBox={this.onClosingSigninBox}
+        onSigninStatus={this.onSigninStatus}/> : null}
+
         <div id="mainPanel" className={wannaSignin ? 'blurBg' : ''}>
           <Navigation onLanguageChanged={this.onLanguageChanged}
-          onLoginStatusChanged={this.onLoginStatusChanged}
           onSigninClick={this.onWannaSignInChange}
-          isLoggedin={isLoggedin}/>
+          onSignoutStatus={this.onSignoutStatus}
+          loginFlag={loginFlag}/>
+
           <TopPanel/>
           <SearchPanel onSearchResult={this.onSearchResult}/>
           <SearchResultPanel results={searchResults}/>

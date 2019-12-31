@@ -8,19 +8,19 @@ class SigninPanel extends Component{
   }
 
   render(){
-    const {onClosingSigninBox} = this.props;
+    const {onClosingSigninBox, onSigninStatus} = this.props;
     return(
       <div id="signin">
         <label id="closeSigninBox" onClick={onClosingSigninBox}>X</label>
-        <AccountPanel />
+        <AccountPanel onSigninStatus={onSigninStatus}/>
       </div>
     );
   }
 }
 
 class AccountPanel extends Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       toggled: true
     }
@@ -32,13 +32,15 @@ class AccountPanel extends Component{
 
   render(){
     const {toggled} = this.state;
+    const {onSigninStatus} = this.props;
+
     return(
       <div id="tabs">
         <Logo/>
         <button onClick={this.onToggle.bind(this, true)} className={toggled ? 'onFocus' : null}>登陆</button>
         <button onClick={this.onToggle.bind(this, false)} className={toggled ? null : 'onFocus'}>新账号</button>
         <div id="tab-content">
-          {toggled ? <LoginPanel/> : <RegeditPanel/>}
+          {toggled ? <LoginPanel/> : <RegeditPanel onSigninStatus={onSigninStatus}/>}
         </div>
       </div>
     );

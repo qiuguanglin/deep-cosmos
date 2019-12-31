@@ -1,9 +1,22 @@
 import React from 'react';
+import {Signout} from '../rest/UserRestful';
 
-const Navigation = ({onLanguageChanged, onLoginStatusChanged, onSigninClick, isLoggedin})=>{
+const Navigation = ({onLanguageChanged, onSigninClick, loginFlag, onSigninStatus, onSignoutStatus})=>{
+  const onSignoutClicked = ()=>{
+    Signout((err, res) => onSignoutStatus(err ? true : !res.success));
+  }
+
   return(
     <div id="navigation">
-      {isLoggedin ? <Logout/> : <Login onSigninClick={onSigninClick}/>}
+      {
+        loginFlag ?
+        (<span>
+          <a href="#" onClick={onSignoutClicked}>退出</a>
+        </span>) :
+        (<span>
+          <a href="#" onClick={onSigninClick}><img src="./resource/icon/user-icon.png"/> 我的账户</a>
+        </span>)
+      }
       <span>
         <label>语言  </label>
         <select name="languages" onChange={onLanguageChanged}>
@@ -12,16 +25,6 @@ const Navigation = ({onLanguageChanged, onLoginStatusChanged, onSigninClick, isL
         </select>
       </span>
   </div>)
-}
-
-const Logout = ()=><span>退出</span>;
-
-const Login = ({onSigninClick})=>{
-  return(
-    <span>
-        <a href="#" onClick={onSigninClick}><img src="./resource/icon/user-icon.png"/> 我的账户</a>
-    </span>
-  );
 }
 
 export default Navigation;
