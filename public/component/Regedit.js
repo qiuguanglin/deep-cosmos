@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+import Config from '../config';
 
 const REGEXP_PHONE = /^1\d{10}$/;
 const REGEXP_MAIL = /^\w+@(qq|126|163|tom|gmail|msn)\.com$/;
@@ -6,6 +8,7 @@ const REGEXP_SPECIAL_CHARACTER = /[\@\!\#\$\%\^\&\*\(\)\_\-\=\+\`\~\;\:\'\"\/\{\
 const REGEXP_UPPERCASE = /[A-Z]/;
 const REGEXP_LOWERCASE = /[a-z]/;
 const REGEXP_NUMBER = /\d/;
+const {HOST, PORT} = Config;
 
 const isPasswordValid = password =>
   REGEXP_SPECIAL_CHARACTER.test(password) &&
@@ -24,7 +27,9 @@ class RegeditPanel extends Component{
     this.state = {
       username: '',
       password: '',
-      isValidated: false
+      isUsernameValidated: false,
+      isPasswordValidated: false,
+      message: ''
     }
     this.onUserNameChange = this.onUserNameChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
@@ -33,21 +38,20 @@ class RegeditPanel extends Component{
 
   onSubmitHandler(e){
     e.preventDefault();
-    const {isValidated, username, password} = this.state;
-    if(isValidated)
-      console.log(username, password);
   }
 
   onUserNameChange(e){
-    this.setState({username: e.target.value.trim()});
+    const value = e.target.value.trim();
+    this.setState({username: value, isUsernameValidated: isUsernameValid(value)});
   }
 
   onPasswordChange(e){
-    this.setState({password: e.target.value.trim()});
+    const value = e.target.value;
+    this.setState({password: value, isPasswordValidated: isPasswordValid(value)});
   }
 
   render(){
-    const {username, password} = this.state;
+    const {username, password, isUsernameValidated, isPasswordValidated, message} = this.state;
     return(
       <div id="regedit">
         <form onSubmit={this.onSubmitHandler}>
@@ -55,7 +59,7 @@ class RegeditPanel extends Component{
           value={username} onChange={this.onUserNameChange}
           required/>
           {
-            (username && !isUsernameValid(username)) ?
+            (username && !isUsernameValidated) ?
             <span className="notation"><br/>账号格式不正确</span> : null
           }
           <p/>
@@ -64,9 +68,10 @@ class RegeditPanel extends Component{
           value={password} onChange={this.onPasswordChange}
           required/>
           {
-            (password && !isPasswordValid(password)) ?
+            (password && !isPasswordValidated) ?
             <span className="notation"><br/>密码格式不正确</span> : null
           }<p/>
+          <span className="notation"><br/>{message}</span>
 
           <p className="hint">
             * 账号为11位手机号码或者邮箱地址<br/>

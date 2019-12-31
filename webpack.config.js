@@ -6,7 +6,6 @@ module.exports = {
   mode: 'development',
   entry: {
     'index': path.resolve(__dirname, './public/index.js'),
-    'account': path.resolve(__dirname, './public/account.js'),
   },
   output: {
       path: path.resolve(__dirname, 'dist'),
@@ -28,11 +27,6 @@ module.exports = {
       template: "./public/index.html",
       filename: "./index.html",
       chunks: ['index']
-    }),
-    new HTMLWebPackPlugin({
-      template: "./public/account.html",
-      filename: "./account.html",
-      chunks: ['account']
     }),
     new CopyWebpackPlugin([
       { from: 'public/resource' , to: 'resource' },

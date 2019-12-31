@@ -6,6 +6,7 @@ import SearchPanel from './component/Search';
 import SearchResultPanel from './component/SearchResult';
 import PromotionPanel from './component/Promotion';
 import FooterPanel from './component/Footer';
+import SigninPanel from './component/Signin';
 
 class App extends Component{
   constructor(){
@@ -13,12 +14,15 @@ class App extends Component{
     this.state = {
       isLoggedin: false,
       language: 'schn',
-      searchResults: []
+      searchResults: [],
+      wannaSignin: false,
     }
 
     this.onLanguageChanged = this.onLanguageChanged.bind(this);
     this.onLoginStatusChanged = this.onLoginStatusChanged.bind(this);
     this.onSearchResult = this.onSearchResult.bind(this);
+    this.onWannaSignInChange = this.onWannaSignInChange.bind(this);
+    this.onClosingSigninBox = this.onClosingSigninBox.bind(this);
   }
 
   componentDidMount(){
@@ -37,18 +41,30 @@ class App extends Component{
     this.setState({searchResults: results});
   }
 
+  onWannaSignInChange(){
+    this.setState({wannaSignin: true});
+  }
+
+  onClosingSigninBox(){
+    this.setState({wannaSignin: false});
+  }
+
   render(){
-    const {isLoggedin, searchResults} = this.state;
+    const {isLoggedin, searchResults, wannaSignin} = this.state;
     return(
       <div>
-        <Navigation onLanguageChanged={this.onLanguageChanged}
-        onLoginStatusChanged={this.onLoginStatusChanged}
-        isLoggedin={isLoggedin}/>
-        <TopPanel/>
-        <SearchPanel onSearchResult={this.onSearchResult}/>
-        <SearchResultPanel results={searchResults}/>
-        <PromotionPanel/>
-        <FooterPanel/>
+        {wannaSignin ? <SigninPanel onClosingSigninBox={this.onClosingSigninBox}/> : null}
+        <div id="mainPanel" className={wannaSignin ? 'blurBg' : ''}>
+          <Navigation onLanguageChanged={this.onLanguageChanged}
+          onLoginStatusChanged={this.onLoginStatusChanged}
+          onSigninClick={this.onWannaSignInChange}
+          isLoggedin={isLoggedin}/>
+          <TopPanel/>
+          <SearchPanel onSearchResult={this.onSearchResult}/>
+          <SearchResultPanel results={searchResults}/>
+          <PromotionPanel/>
+          <FooterPanel/>
+        </div>
       </div>
     )
   }

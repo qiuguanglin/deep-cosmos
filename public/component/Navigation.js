@@ -1,10 +1,9 @@
 import React from 'react';
 
-const Navigation = ({onLanguageChanged, onLoginStatusChanged, isLoggedin})=>{
+const Navigation = ({onLanguageChanged, onLoginStatusChanged, onSigninClick, isLoggedin})=>{
   return(
     <div id="navigation">
-      {isLoggedin ? <Logout/> : <Login/>}
-
+      {isLoggedin ? <Logout/> : <Login onSigninClick={onSigninClick}/>}
       <span>
         <label>语言  </label>
         <select name="languages" onChange={onLanguageChanged}>
@@ -17,13 +16,12 @@ const Navigation = ({onLanguageChanged, onLoginStatusChanged, isLoggedin})=>{
 
 const Logout = ()=><span>退出</span>;
 
-const Login = ()=>{
+const Login = ({onSigninClick})=>{
   return(
     <span>
-        <a href="./account.html"><img src="./resource/icon/user-icon.png"/> 我的账户</a>
+        <a href="#" onClick={onSigninClick}><img src="./resource/icon/user-icon.png"/> 我的账户</a>
     </span>
   );
 }
-
 
 export default Navigation;

@@ -1,3 +1,7 @@
 body{
   margin: 0;
 }
+.blurBg{
+  filter: blur(1.2px);
+  opacity: 0.8;
+}
