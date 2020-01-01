@@ -43,7 +43,7 @@ class AccountPanel extends Component{
         <button onClick={this.onToggle} className={toggled ? 'onFocus' : null}>登陆</button>
         <button onClick={this.onToggle} className={toggled ? null : 'onFocus'}>新账号</button>
         <div id="tab-content">
-          {toggled ? <LoginPanel/> : <RegeditPanel onSigninStatus={onSigninStatus}/>}
+          {toggled ? <LoginPanel onSigninStatus={onSigninStatus}/> : <RegeditPanel onSigninStatus={onSigninStatus}/>}
         </div>
       </div>
     );

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {LoginUser} from '../rest/UserRestful';
 
 class LoginPanel extends Component{
   constructor(props){
@@ -17,11 +18,14 @@ class LoginPanel extends Component{
   onSubmitHandler(e){
     e.preventDefault();
     const {username, password} = this.state;
-    //try login
-    if(true){
-      this.setState({message: '账号或密码不正确'});
-    }else{
-      //jump to index
+    const {onSigninStatus} = this.props;
+
+    if(username && password){
+      LoginUser(username, password, (err, data)=>{
+        if(err)return this.setState({message: '服务器错误，请稍后再试'});
+        if(!data.message.success)return this.setState({message: '账号或密码不正确'});
+        onSigninStatus(data.message);
+      });
     }
   }
 

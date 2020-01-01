@@ -8,16 +8,16 @@ const REGEXP_UPPERCASE = /[A-Z]/;
 const REGEXP_LOWERCASE = /[a-z]/;
 const REGEXP_NUMBER = /\d/;
 
-const isPasswordValid = password => true
-  // REGEXP_SPECIAL_CHARACTER.test(password) &&
-  // REGEXP_UPPERCASE.test(password) &&
-  // REGEXP_LOWERCASE.test(password) &&
-  // REGEXP_NUMBER.test(password) &&
-  // password.length >= 6
-  // && password.length <= 12;
+const isPasswordValid = password =>
+  REGEXP_SPECIAL_CHARACTER.test(password) &&
+  REGEXP_UPPERCASE.test(password) &&
+  REGEXP_LOWERCASE.test(password) &&
+  REGEXP_NUMBER.test(password) &&
+  password.length >= 6
+  && password.length <= 12;
 
-const isUsernameValid = username => true
-  // REGEXP_PHONE.test(username) || REGEXP_MAIL.test(username);
+const isUsernameValid = username =>
+  REGEXP_PHONE.test(username) || REGEXP_MAIL.test(username);
 
 class RegeditPanel extends Component{
   constructor(props){
@@ -38,14 +38,16 @@ class RegeditPanel extends Component{
   onSubmitHandler(e){
     e.preventDefault();
 
-    const {username, password} = this.state;
+    const {username, password, isUsernameValidated, isPasswordValidated} = this.state;
     const {onSigninStatus} = this.props;
 
-    NewUser(username, password, (err, data) => {
-      if(err)return this.setState({message: '服务器错误，请稍后再试'});
-      if(!data.success)return this.setState({message: data.message});
-      onSigninStatus(data.success);
-    });
+    if(isUsernameValidated && isPasswordValidated){
+      NewUser(username, password, (err, data) => {
+        if(err)return this.setState({message: '服务器错误，请稍后再试'});
+        if(!data.success)return this.setState({message: data.message});
+        onSigninStatus(data.success);
+      });
+    }
   }
 
   onUserNameChange(e){

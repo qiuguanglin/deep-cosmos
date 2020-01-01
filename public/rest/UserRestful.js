@@ -24,4 +24,10 @@ const Signout = callback => {
   .catch(err=>callback(err));
 }
 
-export {NewUser, AmIin, Signout};
+const LoginUser = (username, password, callback) =>{
+  RestRequester.post(`${userRerouce}/login`)
+  .then(res=>callback(null, res.data))
+  .catch(err=>callback(err));
+}
+
+export {NewUser, AmIin, Signout, LoginUser};
