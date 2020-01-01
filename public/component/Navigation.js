@@ -1,7 +1,7 @@
 import React from 'react';
 import {Signout} from '../rest/UserRestful';
 
-const Navigation = ({onLanguageChanged, onSigninClick, loginFlag, onSigninStatus, onSignoutStatus})=>{
+const Navigation = ({onLanguageChanged, onSigninClick, loginFlag, onSignoutStatus})=>{
   const onSignoutClicked = ()=>{
     Signout((err, res) => onSignoutStatus(err ? true : !res.success));
   }

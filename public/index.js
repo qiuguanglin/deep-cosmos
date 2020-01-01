@@ -23,11 +23,10 @@ class App extends Component{
     this.onSigninStatus = this.onSigninStatus.bind(this);
     this.onSignoutStatus = this.onSignoutStatus.bind(this);
     this.onSearchResult = this.onSearchResult.bind(this);
-    this.onWannaSignInChange = this.onWannaSignInChange.bind(this);
-    this.onClosingSigninBox = this.onClosingSigninBox.bind(this);
   }
 
   componentDidMount(){
+    //on app loading check the login status and change the header
     AmIin((err, data)=>this.setState({loginFlag: err ? false : data.success}));
   }
 
@@ -36,7 +35,8 @@ class App extends Component{
   }
 
   onSigninStatus(loginFlag){
-    this.setState({loginFlag: loginFlag});
+    //when login successfully change the header, and hide the login panel
+    this.setState({loginFlag: loginFlag, wannaSignin: !loginFlag});
   }
 
   onSignoutStatus(signoutFlag){
@@ -47,24 +47,16 @@ class App extends Component{
     this.setState({searchResults: results});
   }
 
-  onWannaSignInChange(){
-    this.setState({wannaSignin: true});
-  }
-
-  onClosingSigninBox(){
-    this.setState({wannaSignin: false});
-  }
-
   render(){
     const {loginFlag, searchResults, wannaSignin} = this.state;
     return(
       <div>
-        {wannaSignin ? <SigninPanel onClosingSigninBox={this.onClosingSigninBox}
+        {wannaSignin ? <SigninPanel onClosingSigninBox={() => this.setState({wannaSignin: false})}
         onSigninStatus={this.onSigninStatus}/> : null}
 
         <div id="mainPanel" className={wannaSignin ? 'blurBg' : ''}>
           <Navigation onLanguageChanged={this.onLanguageChanged}
-          onSigninClick={this.onWannaSignInChange}
+          onSigninClick={() => this.setState({wannaSignin: true})}
           onSignoutStatus={this.onSignoutStatus}
           loginFlag={loginFlag}/>
 

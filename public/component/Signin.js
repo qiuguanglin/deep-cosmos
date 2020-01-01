@@ -24,10 +24,13 @@ class AccountPanel extends Component{
     this.state = {
       toggled: true
     }
+
+    this.onToggle = this.onToggle.bind(this);
   }
 
-  onToggle(flag){
-    this.setState({toggled: flag});
+  onToggle(){
+    const isToggled = this.state.toggled;
+    this.setState({toggled: !isToggled});
   }
 
   render(){
@@ -37,8 +40,8 @@ class AccountPanel extends Component{
     return(
       <div id="tabs">
         <Logo/>
-        <button onClick={this.onToggle.bind(this, true)} className={toggled ? 'onFocus' : null}>登陆</button>
-        <button onClick={this.onToggle.bind(this, false)} className={toggled ? null : 'onFocus'}>新账号</button>
+        <button onClick={this.onToggle} className={toggled ? 'onFocus' : null}>登陆</button>
+        <button onClick={this.onToggle} className={toggled ? null : 'onFocus'}>新账号</button>
         <div id="tab-content">
           {toggled ? <LoginPanel/> : <RegeditPanel onSigninStatus={onSigninStatus}/>}
         </div>

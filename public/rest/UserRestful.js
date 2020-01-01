@@ -1,13 +1,11 @@
 'use strict';
-import axios from 'axios';
 
-const [HOST, PORT] = ['http://localhost', 60000];
-const Requester = axios.create({
-  withCredentials: true
-});
+import {RestRequester, RemoteConfig} from '../global';
+
+const {userRerouce} = RemoteConfig;
 
 const NewUser = (username, password, callback) =>{
-  Requester.post(`${HOST}:${PORT}/user/newUser`, {
+  RestRequester.post(`${userRerouce}/newUser`, {
     username,
     password
   }).then(res=>callback(null, res.data))
@@ -15,13 +13,13 @@ const NewUser = (username, password, callback) =>{
 }
 
 const AmIin = callback => {
-  Requester.get(`${HOST}:${PORT}/user/amIin`)
+  RestRequester.get(`${userRerouce}/amIin`)
   .then(res=>callback(null, res.data))
   .catch(err=>callback(err));
 }
 
 const Signout = callback => {
-  Requester.delete(`${HOST}:${PORT}/user/signout`)
+  RestRequester.delete(`${userRerouce}/signout`)
   .then(res=>callback(null, res.data))
   .catch(err=>callback(err));
 }
