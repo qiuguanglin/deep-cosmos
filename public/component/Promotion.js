@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {PromotionList} from '../rest/PromotionRestful';
 
 class PromotionPanel extends Component{
   constructor(props){
@@ -10,14 +11,10 @@ class PromotionPanel extends Component{
   }
 
   componentDidMount(){
-    const fakeData = {
-      desc: '火星五天四夜游，攀登火星最高峰奥林匹斯山，黄昏浪漫看日落，早上温馨看地出，来回飞船价钱',
-      price: 40000
-    };
-
-    setTimeout(()=>{
-      this.setState({promotions: [fakeData, fakeData, fakeData], isLoaded: true});
-    }, 3000);
+    PromotionList((err, data)=>{
+      if(err)throw err;
+      this.setState({promotions: data.promotions, isLoaded: true});
+    })
   }
 
   render(){
