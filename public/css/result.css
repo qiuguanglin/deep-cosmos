@@ -10,17 +10,27 @@
 }
 
 #searchResult table tr{
-  background-color: #b2bbbe;
+  /* background-color: #b2bbbe; */
   line-height: 30px;
 }
 
-#searchResult table tr:hover{
+.flightsInfo:hover{
   background-color: #93b5cf;
   cursor: pointer;
 }
 
 #searchResult table tr td{
   padding: 4px 50px;
+}
+
+.flightsInfo{
+  background-color: #b2bbbe;
+  text-align: center;
+}
+
+#purchaseContent{
+  text-align: right;
+  padding: 0px 10px;
 }
 
 #searchResult th{

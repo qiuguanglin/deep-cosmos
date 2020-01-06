@@ -1,13 +1,20 @@
 'use strict';
 
 import {RestRequester, RemoteConfig} from '../global';
+import Adapter from './adapter/SearchResultAggregater';
 
 const {searchResource} = RemoteConfig;
 
-const FlightList = (from, to, callback) =>{
+const Search = (from, to, flightsMap, planetList, callback) =>{
   RestRequester.get(`${searchResource}/flights/${from}/${to}`)
-  .then(res=>callback(null, res.data))
-  .catch(err=>callback(err));
+  .then(res => {
+    if(!res.data.success)
+      throw Error(res.data.message);
+    return res;
+  })
+  .then(res => Adapter(res, flightsMap, planetList))
+  .then(res => callback(null, res))
+  .catch(err => callback(err));
 }
 
-export {FlightList};
+export {Search};

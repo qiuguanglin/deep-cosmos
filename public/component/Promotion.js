@@ -13,7 +13,7 @@ class PromotionPanel extends Component{
   componentDidMount(){
     PromotionList((err, data)=>{
       if(err)throw err;
-      this.setState({promotions: data.promotions, isLoaded: true});
+      this.setState({promotions: data.message, isLoaded: true});
     })
   }
 
