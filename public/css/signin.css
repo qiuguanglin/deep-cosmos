@@ -1,7 +1,7 @@
 #signin{
   position: fixed;
-  bottom: 1px;
-  right: 1px;
+  left: 38%;
+  top: 20%;
   z-index: 9;
   box-shadow: -1px 0px 6px 1px #000;
   border-radius: 8px;

@@ -10,7 +10,8 @@ const RemoteConfig = {
   port: 60000,
   get baseUrl() {return `${this.host}:${this.port}`},
   get userRerouce() {return this.baseUrl + '/user'},
-  get promotionResource() {return this.baseUrl + '/promotion'}
+  get promotionResource() {return this.baseUrl + '/promotion'},
+  get searchResource() {return this.baseUrl + '/search'}
 }
 
 export {RestRequester, RemoteConfig}

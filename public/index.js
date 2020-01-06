@@ -23,6 +23,7 @@ class App extends Component{
     this.onSigninStatus = this.onSigninStatus.bind(this);
     this.onSignoutStatus = this.onSignoutStatus.bind(this);
     this.onSearchResult = this.onSearchResult.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
   }
 
   componentDidMount(){
@@ -47,14 +48,23 @@ class App extends Component{
     this.setState({searchResults: results});
   }
 
+  //hide the login window when ESC key is pressed
+  onKeyDown(event){
+    if(!this.state.wannaSignin)return;
+    this.setState({wannaSignin: event.keyCode !== 27})
+  }
+
   render(){
     const {loginFlag, searchResults, wannaSignin} = this.state;
     return(
       <div>
-        {wannaSignin ? <SigninPanel onClosingSigninBox={() => this.setState({wannaSignin: false})}
-        onSigninStatus={this.onSigninStatus}/> : null}
+        {wannaSignin ?
+          <SigninPanel
+          onClosingSigninBox={() => this.setState({wannaSignin: false})}
+          onSigninStatus={this.onSigninStatus}/>
+          : null}
 
-        <div id="mainPanel" className={wannaSignin ? 'blurBg' : ''}>
+        <div id="mainPanel" className={wannaSignin ? 'blurBg' : ''} onKeyDown={this.onKeyDown}>
           <Navigation onLanguageChanged={this.onLanguageChanged}
           onSigninClick={() => this.setState({wannaSignin: true})}
           onSignoutStatus={this.onSignoutStatus}

@@ -2,6 +2,14 @@ body{
   margin: 0;
 }
 .blurBg{
-  filter: blur(1.2px);
-  opacity: 0.8;
+  animation-name: blurBg;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes blurBg {
+  100%{
+    filter: blur(1.2px) grayscale(100%);
+    opacity: 0.8;
+  }
 }

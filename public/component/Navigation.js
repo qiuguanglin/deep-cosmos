@@ -18,7 +18,6 @@ const Navigation = ({onLanguageChanged, onSigninClick, loginFlag, onSignoutStatu
         </span>)
       }
       <span>
-        <label>语言  </label>
         <select name="languages" onChange={onLanguageChanged}>
           <option value="ch">简体中文</option>
           <option value="en">英文</option>
