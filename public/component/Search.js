@@ -8,8 +8,8 @@ class SearchPanel extends Component{
     this.state = {
       beginning: '',
       destination: '',
-      beginList: [],
-      destinationList: []
+      beginningID: '',
+      destinationID: ''
     }
 
     this.onBeginningChange = this.onBeginningChange.bind(this);
@@ -17,31 +17,47 @@ class SearchPanel extends Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  getSelectedPlaceID(e){
+    const selectedValue = e.target.value.trim();
+    const options = e.target.list.options;
+
+    for(let i=0; i<options.length; i++){
+      const option = options.item(i);
+      if(option.value === selectedValue){
+        return option.title;
+      }
+    }
+    return undefined; //this could never happen except on purpose submitted via command out of malice
+  }
+
   onDestinationChange(e){
-    this.setState({destination: e.target.value.trim()});
+    this.setState({destinationID: this.getSelectedPlaceID(e), destination: e.target.value.trim()});
   }
 
   onBeginningChange(e){
-    this.setState({beginning: e.target.value.trim()});
+    this.setState({beginningID: this.getSelectedPlaceID(e), beginning: e.target.value.trim()});
   }
 
   componentDidMount(){
     Data((err, data) => {
       if(err)throw err;
-      console.log(data);
+
       const {flightsMap, planetList} = data.message;
       this.flightsMap = flightsMap;
       this.planetList = planetList;
+
+      this.dropdownData = planetList.map((planet, index) =>
+        <option value={planet.name} key={index} title={planet.id}/>);
     });
   }
 
   handleSubmit(e){
     e.preventDefault();
     const {onSearchResult} = this.props;
-    const {beginning, destination} = this.state;
+    const {beginning, destination, beginningID, destinationID} = this.state;
 
     if(beginning && destination){
-      Search(beginning, destination, this.flightsMap, this.planetList, (err, data) => {
+      Search(beginningID, destinationID, this.flightsMap, this.planetList, (err, data) => {
         if(err)throw err;
 
         const result = [];
@@ -60,25 +76,25 @@ class SearchPanel extends Component{
             duration: '1h'
           });
         }
-        onSearchResult({flights: result, totalPrice})
+        onSearchResult({flights: result, totalPrice});
       });
     }
   }
 
   render(){
-    const {date, beginning, destination, message, beginList, destinationList} = this.state;
+    const {date, beginning, destination, message} = this.state;
 
     return(
       <div id="search">
         <form onSubmit={this.handleSubmit}>
           <input list="beginStop" className="pickList" value={beginning} onChange={this.onBeginningChange} placeholder="起点星球"/>
           <datalist id="beginStop">
-            {beginList}
+            {this.dropdownData}
           </datalist>
 
           <input list="destination" className="pickList" value={destination} onChange={this.onDestinationChange} placeholder="终点星球"/>
           <datalist id="destination">
-            {destinationList}
+            {this.dropdownData}
           </datalist>
 
           <input type="submit" value="搜索" id="searchFlightButton"/>
