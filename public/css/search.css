@@ -4,3 +4,15 @@
   padding: 10px 0px 2px 0px;
   background-image: url('../resource/subtle-light.jpg');
 }
+#searchFlightButton{
+    margin-left: 10px;
+    border-radius: 6px;
+    padding: 2px 12px;
+    background-color: #0371d9;
+    color: #fff
+}
+
+.pickList{
+  margin-left: 10px;
+  line-height: 20px;
+}

@@ -8,6 +8,8 @@ class SearchPanel extends Component{
     this.state = {
       beginning: '',
       destination: '',
+      beginList: [],
+      destinationList: []
     }
 
     this.onBeginningChange = this.onBeginningChange.bind(this);
@@ -20,13 +22,13 @@ class SearchPanel extends Component{
   }
 
   onBeginningChange(e){
-    console.log(e.target.value);
     this.setState({beginning: e.target.value.trim()});
   }
 
   componentDidMount(){
     Data((err, data) => {
       if(err)throw err;
+      console.log(data);
       const {flightsMap, planetList} = data.message;
       this.flightsMap = flightsMap;
       this.planetList = planetList;
@@ -64,14 +66,22 @@ class SearchPanel extends Component{
   }
 
   render(){
-    const {date, beginning, destination, message} = this.state;
+    const {date, beginning, destination, message, beginList, destinationList} = this.state;
 
     return(
       <div id="search">
         <form onSubmit={this.handleSubmit}>
-          始发：<input type="beginning" value={beginning} onChange={this.onBeginningChange}/>
-          终点：<input type="destination" value={destination} onChange={this.onDestinationChange}/>
-          <input type="submit" value="搜索"/>
+          <input list="beginStop" className="pickList" value={beginning} onChange={this.onBeginningChange} placeholder="起点星球"/>
+          <datalist id="beginStop">
+            {beginList}
+          </datalist>
+
+          <input list="destination" className="pickList" value={destination} onChange={this.onDestinationChange} placeholder="终点星球"/>
+          <datalist id="destination">
+            {destinationList}
+          </datalist>
+
+          <input type="submit" value="搜索" id="searchFlightButton"/>
         </form>
       </div>
     );
