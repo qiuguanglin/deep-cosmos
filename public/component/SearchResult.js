@@ -3,6 +3,7 @@ import React from 'react';
 const SearchResultPanel = ({results}) => {
   let totalPrice = 0;
   if(results){
+    //format the price as currency
     totalPrice = results.totalPrice.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
   }
   const tableContent = (results && results.flights.length) ?
@@ -13,14 +14,16 @@ const SearchResultPanel = ({results}) => {
         <td>{res.stopNum}</td>
         <td>{res.stops.join(', ')}</td>
         <td>{res.shuttles}</td>
-        <td>{res.duration}</td>
+        <td>{res.sectionDistance} KM</td>
+        <td>{res.duration} 小时</td>
       </tr>
     )): null;
 
     const purchaseContent = results ?
-      <tr id="purchaseContent"><td colSpan="7">
-        总价格 CNY {totalPrice}
-        <a href="#"> 买票</a>
+      <tr id="search-purchaseContent"><td colSpan="7">
+        <img src="../resource/icon/cart.png"/>
+        总价 CNY {totalPrice}
+        <button>购买</button>
       </td></tr> : null
 
   return(
@@ -28,11 +31,12 @@ const SearchResultPanel = ({results}) => {
         <table border="0">
         <thead>
             <tr>
-              <th>起点</th>
-              <th>终点</th>
-              <th>停站数</th>
-              <th>停靠站</th>
-              <th>飞船</th>
+              <th>出发地</th>
+              <th>目的地</th>
+              <th>经站数</th>
+              <th>停靠星球</th>
+              <th>乘坐飞船</th>
+              <th>距离</th>
               <th>历时</th>
             </tr>
           </thead>

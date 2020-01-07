@@ -42,9 +42,10 @@ class SearchPanel extends Component{
     Data((err, data) => {
       if(err)throw err;
 
-      const {flightsMap, planetList} = data.message;
+      const {flightsMap, planetList, routeCostMap} = data.message;
       this.flightsMap = flightsMap;
       this.planetList = planetList;
+      this.routeCostMap = routeCostMap;
 
       this.dropdownData = planetList.map((planet, index) =>
         <option value={planet.cname} key={index} title={planet.id}/>);
@@ -57,15 +58,15 @@ class SearchPanel extends Component{
     const {beginning, destination, beginningID, destinationID} = this.state;
 
     if(beginningID && destinationID && beginning && destination){
-      Search(beginningID, destinationID, this.flightsMap, this.planetList, (err, data) => {
+      Search(beginningID, destinationID, this.flightsMap, this.planetList, this.routeCostMap, (err, data) => {
         if(err)throw err;
 
         const result = [];
         const totalPrice = data.totalPrice;
-        const lines = data.lines;
+        const lines = data.lines
 
         for(let i=0; i<lines.length; i++){
-          const {shuttles, stops} = lines[i];
+          const {shuttles, stops, sectionDistance, duration} = lines[i];
           const [begin, end] = [stops[0], stops[stops.length - 1]];
           result.push({
             begin,
@@ -73,7 +74,8 @@ class SearchPanel extends Component{
             stopNum: stops.length,
             stops,
             shuttles,
-            duration: '1h'
+            sectionDistance,
+            duration: duration,
           });
         }
         onSearchResult({flights: result, totalPrice});

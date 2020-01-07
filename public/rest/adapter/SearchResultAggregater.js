@@ -51,15 +51,35 @@ const aggregateDescriptiveNames = (lines, planetEnum, flightsMap) => {
       line.shuttles = line.shuttles.map(st=>flightsMap[st].cname);
       line.stops = line.stops.map(st=>planetEnum[st].cname)
   }
-  return lines;
 }
 
-const Adapter = (result, flightsMap, planetList) => {
+const aggreateSectionDistance = (lines, routeCostMap, flightsMap) => {
+  for(let i=0; i<lines.length; i++){
+      const line = lines[i];
+      const stops = line.stops;
+
+      let sum = 0;
+      for(let j=0; j<stops.length-1; j++){
+        const thisStop = stops[j];
+        const nextStop = stops[j+1];
+        sum += routeCostMap[thisStop][nextStop].distance;
+      }
+
+      const spaceshipNumber = line.shuttles[0]; //at this version there is only one routine spacehip in between 2 planets
+      const spaceship = flightsMap[spaceshipNumber];
+
+      line['sectionDistance'] = sum.toFixed(2);
+      line['duration'] = (sum / spaceship.speed).toFixed(1);
+  }
+}
+
+const Adapter = (result, flightsMap, planetList, routeCostMap) => {
   const {totalPrice, transfers} = result.data.message;
   const planetEnum = planetList.reduce((obj, ele) => {obj[ele.id] = ele; return obj}, {});
 
-  let lines = aggregateLine(transfers);
-  lines = aggregateDescriptiveNames(lines, planetEnum, flightsMap);
+  const lines = aggregateLine(transfers);
+  aggreateSectionDistance(lines, routeCostMap, flightsMap);
+  aggregateDescriptiveNames(lines, planetEnum, flightsMap);
   return {totalPrice, lines};
 }
 
