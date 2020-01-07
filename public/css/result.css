@@ -37,12 +37,6 @@
   color: green;
   font-size: 14px;
 }
-#search-purchaseContent button{
-  background-color: #0371d9;
-  border-radius: 6px;
-  padding: 4px 12px;
-  color: #fff;
-}
 #search-purchaseContent img{
   width: 18px;
   margin-right: 4px;

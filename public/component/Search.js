@@ -15,6 +15,7 @@ class SearchPanel extends Component{
     this.onBeginningChange = this.onBeginningChange.bind(this);
     this.onDestinationChange = this.onDestinationChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onSwitchingDirection = this.onSwitchingDirection.bind(this);
   }
 
   getSelectedPlaceID(e){
@@ -27,7 +28,23 @@ class SearchPanel extends Component{
         return option.title;
       }
     }
-    return undefined; //this could never happen except on purpose submitted via command or mal-input, out of malice
+    return undefined; //this could never happen except on purpose submittion via command or mal-input, out of malice
+  }
+
+  onSwitchingDirection(e){
+    e.preventDefault();
+    //when the switch directio button is clicked, the values in the fields and the ids also should be switched
+    const {beginning, destination, beginningID, destinationID} = this.state;
+    if(beginning && destination){
+      const [sbeginning, sdestination, sbeginningID, sdestinationID]
+        = [destination, beginning, destinationID, beginningID];
+      this.setState({
+        beginning: sbeginning,
+        destination: sdestination,
+        beginningID: sbeginningID,
+        destinationID: sdestinationID
+      });
+    }
   }
 
   onDestinationChange(e){
@@ -97,6 +114,12 @@ class SearchPanel extends Component{
             {this.dropdownData}
           </datalist>
 
+          <span id="search-switch-direction" onClick={this.onSwitchingDirection}>
+            <span className="arrow left-arrow"></span>
+            <a href="#">换</a>
+            <span className="arrow right-arrow"></span>
+          </span>
+
           <input list="destination"
             className="pickList"
             value={destination}
@@ -105,7 +128,7 @@ class SearchPanel extends Component{
             {this.dropdownData}
           </datalist>
 
-          <input type="submit" value="搜索" id="searchFlightButton"/>
+          <input type="submit" value="搜索" className="searchFlightButton general-submit-btn"/>
         </form>
       </div>
     );

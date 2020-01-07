@@ -23,7 +23,7 @@ const SearchResultPanel = ({results}) => {
       <tr id="search-purchaseContent"><td colSpan="7">
         <img src="../resource/icon/cart.png"/>
         总价 CNY {totalPrice}
-        <button>购买</button>
+        <button className="general-submit-btn">购买</button>
       </td></tr> : null
 
   return(
