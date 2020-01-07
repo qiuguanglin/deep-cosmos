@@ -47,7 +47,7 @@ class SearchPanel extends Component{
       this.planetList = planetList;
 
       this.dropdownData = planetList.map((planet, index) =>
-        <option value={planet.name} key={index} title={planet.id}/>);
+        <option value={planet.cname} key={index} title={planet.id}/>);
     });
   }
 

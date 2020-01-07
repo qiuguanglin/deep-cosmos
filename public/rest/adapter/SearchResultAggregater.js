@@ -48,8 +48,8 @@ const aggregateLine = transfers =>{
 const aggregateDescriptiveNames = (lines, planetEnum, flightsMap) => {
   for(let i=0; i<lines.length; i++){
       const line = lines[i];
-      line.shuttles = line.shuttles.map(st=>flightsMap[st].name);
-      line.stops = line.stops.map(st=>planetEnum[st].name)
+      line.shuttles = line.shuttles.map(st=>flightsMap[st].cname);
+      line.stops = line.stops.map(st=>planetEnum[st].cname)
   }
   return lines;
 }

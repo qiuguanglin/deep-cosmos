@@ -14,7 +14,7 @@ class App extends Component{
     super();
     this.state = {
       loginFlag: false,
-      language: 'schn',
+      language: 'ch',
       searchResults: null,
       wannaSignin: false,
     }
