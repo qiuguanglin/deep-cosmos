@@ -9,7 +9,7 @@ class SearchPanel extends Component{
       beginning: '',
       destination: '',
       beginningID: '',
-      destinationID: ''
+      destinationID: '',
     }
 
     this.onBeginningChange = this.onBeginningChange.bind(this);
@@ -27,7 +27,7 @@ class SearchPanel extends Component{
         return option.title;
       }
     }
-    return undefined; //this could never happen except on purpose submitted via command out of malice
+    return undefined; //this could never happen except on purpose submitted via command or mal-input, out of malice
   }
 
   onDestinationChange(e){
@@ -56,7 +56,7 @@ class SearchPanel extends Component{
     const {onSearchResult} = this.props;
     const {beginning, destination, beginningID, destinationID} = this.state;
 
-    if(beginning && destination){
+    if(beginningID && destinationID && beginning && destination){
       Search(beginningID, destinationID, this.flightsMap, this.planetList, (err, data) => {
         if(err)throw err;
 
@@ -82,17 +82,23 @@ class SearchPanel extends Component{
   }
 
   render(){
-    const {date, beginning, destination, message} = this.state;
+    const {date, beginning, destination, message, isInputInvalid} = this.state;
 
     return(
       <div id="search">
         <form onSubmit={this.handleSubmit}>
-          <input list="beginStop" className="pickList" value={beginning} onChange={this.onBeginningChange} placeholder="起点星球"/>
+          <input list="beginStop"
+            className="pickList"
+            value={beginning}
+            onChange={this.onBeginningChange} placeholder="起点星球" required/>
           <datalist id="beginStop">
             {this.dropdownData}
           </datalist>
 
-          <input list="destination" className="pickList" value={destination} onChange={this.onDestinationChange} placeholder="终点星球"/>
+          <input list="destination"
+            className="pickList"
+            value={destination}
+            onChange={this.onDestinationChange} placeholder="终点星球" required/>
           <datalist id="destination">
             {this.dropdownData}
           </datalist>

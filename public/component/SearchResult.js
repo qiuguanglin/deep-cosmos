@@ -1,6 +1,10 @@
 import React from 'react';
 
 const SearchResultPanel = ({results}) => {
+  let totalPrice = 0;
+  if(results){
+    totalPrice = results.totalPrice.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+  }
   const tableContent = (results && results.flights.length) ?
     results.flights.map(((res, index)=>
       <tr key={index} className="flightsInfo">
@@ -15,7 +19,7 @@ const SearchResultPanel = ({results}) => {
 
     const purchaseContent = results ?
       <tr id="purchaseContent"><td colSpan="7">
-        总价格 {results.totalPrice}
+        总价格 CNY {totalPrice}
         <a href="#"> 买票</a>
       </td></tr> : null
 
