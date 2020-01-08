@@ -1,10 +1,10 @@
 import React from 'react';
 
-const SearchResultPanel = ({results}) => {
+const SearchResultPanel = ({results, currencyFormatRegx}) => {
   let totalPrice = 0;
   if(results){
     //format the price as currency
-    totalPrice = results.totalPrice.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+    totalPrice = results.totalPrice.toFixed(2).replace(currencyFormatRegx, '$1,');
   }
   const tableContent = (results && results.flights.length) ?
     results.flights.map(((res, index)=>

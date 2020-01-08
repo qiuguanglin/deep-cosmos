@@ -13,21 +13,27 @@ class PromotionPanel extends Component{
   componentDidMount(){
     PromotionList((err, data)=>{
       if(err)throw err;
-      this.setState({promotions: data.message, isLoaded: true});
+      const promotions = data.message;
+      if(promotions){
+          this.setState({promotions, isLoaded: true});
+      }
     })
   }
 
   render(){
     const {isLoaded, promotions} = this.state;
+    const {currencyFormatRegx} = this.props;
 
     const promotionPad = (isLoaded && promotions.length) ?
-    promotions.map((prom, index)=>
-      <div className="promotion-pad" key={index}>
-        <img src="./resource/promotion/mars.jpeg" className="promotion-img"/>
+    promotions.map(prom =>
+      <div className="promotion-pad" key={prom.id}>
+        <img src={`./resource/promotion/${prom.id}.jpg`}/>
         <h4 className="promotion-desc">
-          {prom.desc}
+          <span className="promotion-title">{prom.title}</span>
+          <span className="promotion-detail">{prom.detail}</span>
           <span className="amazing-price">
-          {prom.price}
+          {['惊爆价', '低至', '特价'][parseInt(Math.random() * 3)]}
+          {prom.price.toFixed(2).replace(currencyFormatRegx, '$1,')}
           </span>。
           <a href="#">去看看</a>
         </h4>

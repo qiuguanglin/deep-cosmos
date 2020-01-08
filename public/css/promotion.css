@@ -23,24 +23,33 @@
   width: 400px;
   border: 1px solid GRAY;
   margin: 10px auto;
-}
-.promotion-img{
-  width: 100%;
-}
-.promotion-pad, .promotion-image{
   border-radius: 4px;
 }
+.promotion-pad img{
+    width: 100%;
+}
+
 .promotion-pad:hover{
   box-shadow: 1px 1px 4px 1px #000000;
 }
 
 .promotion-desc{
-  padding: 6px 6px;
+  padding: 18px;
   margin: 0px;
+  font-size: 14px;
+  text-align: justify;
+}
+
+.promotion-title{
+  color: #000;
+}
+
+.promotion-detail{
+  color: gray
 }
 
 .amazing-price{
-  font-size: 1.4em;
+  font-size: 20px;
   color: RED;
 }
 

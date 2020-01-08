@@ -24,6 +24,7 @@ class App extends Component{
     this.onSignoutStatus = this.onSignoutStatus.bind(this);
     this.onSearchResult = this.onSearchResult.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.currencyFormatRegx = /(\d)(?=(\d{3})+\.)/g;
   }
 
   componentDidMount(){
@@ -56,6 +57,7 @@ class App extends Component{
 
   render(){
     const {loginFlag, searchResults, wannaSignin} = this.state;
+
     return(
       <div>
         {wannaSignin ?
@@ -72,8 +74,8 @@ class App extends Component{
 
           <TopPanel/>
           <SearchPanel onSearchResult={this.onSearchResult}/>
-          <SearchResultPanel results={searchResults}/>
-          <PromotionPanel/>
+          <SearchResultPanel results={searchResults} currencyFormatRegx={this.currencyFormatRegx}/>
+          <PromotionPanel currencyFormatRegx={this.currencyFormatRegx}/>
           <FooterPanel/>
         </div>
       </div>
