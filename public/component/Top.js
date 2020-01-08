@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
 const imgList  = [
-  {desc: 'Model－X1海盗一号，核聚变六通道加速，最高时速达光速80%', img: 'shuttle0.jpg'},
-  {desc: 'Model－X1海盗一号，核聚变六通道加速，最高时速达光速80%', img: 'shuttle1.jpg'},
-  {desc: 'Model－X1海盗一号，核聚变六通道加速，最高时速达光速80%', img: 'shuttle2.jpg'},
-  {desc: 'Model－X1海盗一号，核聚变六通道加速，最高时速达光速80%', img: 'shuttle3.jpg'}
+  {desc: '雷神号，核聚变六通道加速，最高时速达光速20%', img: 'shuttle0.jpg'},
+  {desc: '漫游者，使用新型固体燃料，舒适大仓位', img: 'shuttle1.jpg'},
+  {desc: '飞龙号，最新加入反重力波引擎，小重力行星地表可垂直发射', img: 'shuttle2.jpg'},
+  {desc: '普罗米修斯，22世纪大型飞船，首次用反物质湮灭辐射热能加速', img: 'shuttle3.jpg'}
 ];
 
 class TopPanel extends Component{
@@ -54,7 +54,7 @@ class TopPanel extends Component{
 const SlideWindow = ({img})=>{
   return(
     <div id="img-window">
-      <img src={`./resource/${img.img}`} className="display-img"/><br/>
+      <img src={`./resource/${img.img}`} className="display-img"/>
       <h4 className="display-desc">{img.desc}</h4>
     </div>
   );
