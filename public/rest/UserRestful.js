@@ -26,8 +26,10 @@ const Signout = callback => {
 }
 
 const LoginUser = (username, password, callback) =>{
-  RestRequester.post(`${userRerouce}/login`)
-  .then(res=>callback(null, res.data))
+  RestRequester.post(`${userRerouce}/login`, {
+    username,
+    pass: password
+  }).then(res=>callback(null, res.data))
   .catch(err=>callback(err));
 }
 

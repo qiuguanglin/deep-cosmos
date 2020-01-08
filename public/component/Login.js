@@ -20,11 +20,13 @@ class LoginPanel extends Component{
     const {username, password} = this.state;
     const {onSigninStatus} = this.props;
 
-    if(username && password){ 
+    if(username && password){
       LoginUser(username, password, (err, data)=>{
         if(err)return this.setState({message: '服务器错误，请稍后再试'});
-        if(!data.message.success)return this.setState({message: '账号或密码不正确'});
-        onSigninStatus(data.message);
+        if(!data.success)return this.setState({message: '账号或密码不正确'});
+
+        const displayingName = data.message.nickname || data.message.username;
+        onSigninStatus({isSuccess: data.success, displayingName});
       });
     }
   }
