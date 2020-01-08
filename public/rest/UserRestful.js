@@ -4,10 +4,11 @@ import {RestRequester, RemoteConfig} from '../global';
 
 const {userRerouce} = RemoteConfig;
 
-const NewUser = (username, password, callback) =>{
+const NewUser = ({username, password, nickname}, callback) =>{
   RestRequester.post(`${userRerouce}/newUser`, {
     username,
-    password
+    pass: password,
+    nickname
   }).then(res=>callback(null, res.data))
   .catch(err=>callback(err));
 }

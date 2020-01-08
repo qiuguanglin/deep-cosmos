@@ -26,26 +26,32 @@ class RegeditPanel extends Component{
     this.state = {
       username: '',
       password: '',
+      nickname: '',
       isUsernameValidated: false,
       isPasswordValidated: false,
-      message: ''
+      message: '',
     }
+
     this.onUserNameChange = this.onUserNameChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onNicknameChange = this.onNicknameChange.bind(this);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
 
   onSubmitHandler(e){
     e.preventDefault();
 
-    const {username, password, isUsernameValidated, isPasswordValidated} = this.state;
+    const {username, password, nickname, isUsernameValidated, isPasswordValidated} = this.state;
     const {onSigninStatus} = this.props;
 
     if(isUsernameValidated && isPasswordValidated){
-      NewUser(username, password, (err, data) => {
+      NewUser({username, password, nickname}, (err, data) => {
         if(err)return this.setState({message: '服务器错误，请稍后再试'});
-        if(!data.success)return this.setState({message: data.message});
-        onSigninStatus(data.success);
+        //here the message comes errocode from backend, a better way is to map the errocode to a specific message constant
+        if(!data.success)return this.setState({message: data.message == '19' ? '用户名已存在' : data.message});
+
+        const displayingName = data.message.nickname || data.message.username;
+        onSigninStatus({isSuccess: data.success, displayingName});
       });
     }
   }
@@ -60,8 +66,12 @@ class RegeditPanel extends Component{
     this.setState({password: value, isPasswordValidated: isPasswordValid(value)});
   }
 
+  onNicknameChange(e){
+    this.setState({nickname: e.target.value.trim()});
+  }
+
   render(){
-    const {username, password, isUsernameValidated, isPasswordValidated, message} = this.state;
+    const {username, password, nickname, isUsernameValidated, isPasswordValidated, message} = this.state;
     return(
       <div id="regedit">
         <form onSubmit={this.onSubmitHandler}>
@@ -83,12 +93,16 @@ class RegeditPanel extends Component{
           }<p/>
           <span className="notation">{message}</span>
 
+          <input size="40" className="textField" type="text" placeholder="昵称"
+          value={nickname} onChange={this.onNicknameChange}/>
+
           <p className="hint">
             * 账号为11位手机号码或者邮箱地址<br/>
             * 密码必须是6-12位<br/>
             * 密码必须是数字、字母、特殊字符的组合<br/>
             * 密码必须包含至少有一个大写字母
           </p>
+
           <input type="submit" className="submit" value="注册"/>
         </form>
       </div>

@@ -17,6 +17,7 @@ class App extends Component{
       language: 'ch',
       searchResults: null,
       wannaSignin: false,
+      displayingName: '',
     }
 
     this.onLanguageChanged = this.onLanguageChanged.bind(this);
@@ -29,20 +30,24 @@ class App extends Component{
 
   componentDidMount(){
     //on app loading check the login status and change the header
-    AmIin((err, data)=>this.setState({loginFlag: err ? false : data.success}));
+    AmIin((err, data) => {
+      console.log(data);
+      const displayingName = data ? (data.message.nickname || data.message.username) : null;
+      this.setState({loginFlag: err ? false : data.success, displayingName})
+    });
   }
 
   onLanguageChanged(e){
     console.log(e.target.value)
   }
 
-  onSigninStatus(loginFlag){
+  onSigninStatus({isSuccess, displayingName}){
     //when login successfully change the header, and hide the login panel
-    this.setState({loginFlag: loginFlag, wannaSignin: !loginFlag});
+    this.setState({loginFlag: isSuccess, wannaSignin: !isSuccess, displayingName});
   }
 
-  onSignoutStatus(signoutFlag){
-    this.setState({loginFlag: signoutFlag});
+  onSignoutStatus({isSuccess}){
+    this.setState({loginFlag: isSuccess});
   }
 
   onSearchResult(results){
@@ -56,7 +61,7 @@ class App extends Component{
   }
 
   render(){
-    const {loginFlag, searchResults, wannaSignin} = this.state;
+    const {loginFlag, searchResults, wannaSignin, displayingName} = this.state;
 
     return(
       <div>
@@ -70,7 +75,8 @@ class App extends Component{
           <Navigation onLanguageChanged={this.onLanguageChanged}
           onSigninClick={() => this.setState({wannaSignin: true})}
           onSignoutStatus={this.onSignoutStatus}
-          loginFlag={loginFlag}/>
+          loginFlag={loginFlag}
+          displayingName={displayingName}/>
 
           <TopPanel/>
           <SearchPanel onSearchResult={this.onSearchResult}/>
