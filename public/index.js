@@ -31,7 +31,6 @@ class App extends Component{
   componentDidMount(){
     //on app loading check the login status and change the header
     AmIin((err, data) => {
-      console.log(data);
       const displayingName = data ? (data.message.nickname || data.message.username) : null;
       this.setState({loginFlag: err ? false : data.success, displayingName})
     });
