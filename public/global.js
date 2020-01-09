@@ -6,9 +6,15 @@ const RestRequester = axios.create({
 });
 
 const RemoteConfig = {
-  host: 'http://localhost',
-  port: 60000,
-  get baseUrl() {return `${this.host}:${this.port}`},
+  development: {
+    host: 'http://localhost',
+    port: 60000
+  },
+  production: {
+    host: 'http://49.235.159.64',
+    port: 60000
+  },
+  get baseUrl() {return `${this[process.env.NODE_ENV].host}:${this[process.env.NODE_ENV].port}`},
   get userRerouce() {return this.baseUrl + '/user'},
   get promotionResource() {return this.baseUrl + '/promotion'},
   get searchResource() {return this.baseUrl + '/search'},
