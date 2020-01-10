@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Search} from '../rest/SearchRestful';
 import {Data} from '../rest/DataRestful';
-import {FormattedHTMLMessage} from 'react-intl';
+import {FormattedHTMLMessage, FormattedMessage} from 'react-intl';
 
 class SearchPanel extends Component{
   constructor(props){
@@ -110,7 +110,7 @@ class SearchPanel extends Component{
           <input list="beginStop"
             className="pickList"
             value={beginning}
-            onChange={this.onBeginningChange} placeholder="起点星球/beginning" required/>
+            onChange={this.onBeginningChange} placeholder="起点星球/From" required/>
           <datalist id="beginStop">
             {this.dropdownData}
           </datalist>
@@ -124,7 +124,7 @@ class SearchPanel extends Component{
           <input list="destination"
             className="pickList"
             value={destination}
-            onChange={this.onDestinationChange} placeholder="终点星球/destination" required/>
+            onChange={this.onDestinationChange} placeholder="终点星球/To" required/>
           <datalist id="destination">
             {this.dropdownData}
           </datalist>

@@ -7,7 +7,6 @@
   border-radius: 8px;
   background-color: #fff;
   width: 320px;
-  border-bottom: 40px solid #1677b3;
 }
 
 #info-pad h2{
@@ -20,22 +19,10 @@
   color: #fff;
 }
 
-#info-pad p, #embededHTML{
-  text-align: justify;
-  margin: 0px;
-  font-size: 1em;
+#info-content, #embededHTML{
+  line-height: 26px;
+  text-align:justify;
+  margin: 0px 0px 50px 0px;
+  font-size: 0.9em;
   padding: 0px 18px;
-}
-
-#info-close{
-  text-align: center;
-  margin: 18px 0px 18px;
-}
-
-#info-pad button{
-  padding: 10px 26px;
-  border-radius: 6px;
-  background-color: #1677b3;
-  color: #fff;
-  font-size: 0.8em;
 }

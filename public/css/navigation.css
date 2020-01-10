@@ -6,7 +6,10 @@
 }
 
 #navigation img{
+  position: relative;
   width: 15px;
+  margin-right: 4px;
+  top: 2px;
 }
 
 #navigation a{

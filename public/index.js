@@ -93,50 +93,50 @@ class App extends Component{
 
     return(
       <IntlProvider locale="zh" messages={LANGUAGE}>
-      <div id="root">
-        {this.ModalWindowMap[modalWindowNumber]}
+        <div id="root">
+          {this.ModalWindowMap[modalWindowNumber]}
 
-        {wannaSignin ?
-          <SigninPanel
-          onClosingSigninBox={() => this.setState({wannaSignin: false})}
-          onSigninStatus={this.onSigninStatus}/>
-          : null}
+          {wannaSignin ?
+            <SigninPanel
+            onClosingSigninBox={() => this.setState({wannaSignin: false})}
+            onSigninStatus={this.onSigninStatus}/>
+            : null}
 
-        <div id="mainPanel" className={wannaSignin || (modalWindowNumber > 0) ? 'blurBg' : ''}>
-          <Navigation onLanguageChanged={this.onLanguageChanged}
-          onSigninClick={() => this.setState({wannaSignin: true})}
-          onSignoutStatus={this.onSignoutStatus}
-          onToggleInfoWindow={this.onToggleInfoWindow}
-          loginFlag={loginFlag}
-          displayingName={displayingName}
-          />
+          <div id="mainPanel" className={wannaSignin || (modalWindowNumber > 0) ? 'blurBg' : ''}>
+            <Navigation onLanguageChanged={this.onLanguageChanged}
+            onSigninClick={() => this.setState({wannaSignin: true})}
+            onSignoutStatus={this.onSignoutStatus}
+            onToggleInfoWindow={this.onToggleInfoWindow}
+            loginFlag={loginFlag}
+            displayingName={displayingName}
+            />
 
-          <TopPanel/>
+            <TopPanel/>
 
-          <div>
-            <div id="main-tab">
-              <button className={tabToggled ? 'main-tab-toggled' : 'main-tab-untoggled'} onClick={this.onTabToggled}>
-                <FormattedMessage id="main-tab-promotion"/>
-              </button>
-              <button className={tabToggled ? 'main-tab-untoggled' : 'main-tab-toggled'} onClick={this.onTabToggled}>
-                <FormattedMessage id="main-tab-search"/>
-              </button>
+            <div>
+              <div id="main-tab">
+                <button className={tabToggled ? 'main-tab-toggled' : 'main-tab-untoggled'} onClick={this.onTabToggled}>
+                  <FormattedMessage id="main-tab-promotion"/>
+                </button>
+                <button className={tabToggled ? 'main-tab-untoggled' : 'main-tab-toggled'} onClick={this.onTabToggled}>
+                  <FormattedMessage id="main-tab-search"/>
+                </button>
+              </div>
+
+              <div id="main-tab-content">
+                {
+                  tabToggled ? (<PromotionPanel currencyFormatRegx={this.currencyFormatRegx}/>) : (
+                    <div>
+                      <SearchPanel onSearchResult={this.onSearchResult}/>
+                      <SearchResultPanel results={searchResults} currencyFormatRegx={this.currencyFormatRegx}/>
+                    </div>
+                  )
+                }
+              </div>
             </div>
-
-            <div id="main-tab-content">
-              {
-                tabToggled ? (<PromotionPanel currencyFormatRegx={this.currencyFormatRegx}/>) : (
-                  <div>
-                    <SearchPanel onSearchResult={this.onSearchResult}/>
-                    <SearchResultPanel results={searchResults} currencyFormatRegx={this.currencyFormatRegx}/>
-                  </div>
-                )
-              }
-            </div>
+            <FooterPanel/>
           </div>
-          <FooterPanel/>
         </div>
-      </div>
       </IntlProvider>
     )
   }
