@@ -41,12 +41,12 @@ class PromotionPanel extends Component{
     )
     : null;
 
-    const loadingStatus = (isLoaded && promotions.length) ?
-    'PROMOTIONS' : <span className="loadingStatus"><strong>{'LOADING'}</strong></span>;
+    const loadingStatus = (!isLoaded || !promotions.length) ?
+    <h3 className="loadingStatus">{'加载中...'}</h3> : null;
 
     return(
       <div id="promotion">
-        <h2 id="promotion-header">本月特惠 - {loadingStatus}</h2>
+        {loadingStatus}
         <div id="promotion-info">
           {promotionPad}
         </div>

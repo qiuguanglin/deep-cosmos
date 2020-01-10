@@ -1,10 +1,12 @@
 body{
   margin: 0;
+  background: #fff;
 }
 .blurBg{
   animation-name: blurBg;
   animation-duration: 2s;
   animation-fill-mode: forwards;
+  pointer-events: none;
 }
 
 @keyframes blurBg {
@@ -16,7 +18,47 @@ body{
 
 .general-submit-btn{
   border-radius: 6px;
-  padding: 4px 12px;
-  background-color: #0371d9;
+  padding: 4px 14px;
+  background-color: #1677b3;
   color: #fff
+}
+
+#root{
+  width: 1000px;
+  margin: 0 auto;
+}
+
+#main-tab{
+  margin: 0 auto;
+  width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#main-tab button{
+  padding: 14px 0px;
+  font-size: 1.2em;
+  color: #fff;
+  border: none;
+}
+#main-tab button:first-child{
+  border-radius: 8px 0px 0px 0px;
+}
+#main-tab button:last-child{
+  border-radius: 0px 8px 0px 0px;
+}
+
+.main-tab-toggled{
+  background-color: #1677b3;
+
+}
+.main-tab-untoggled{
+  background-color: GRAY;
+  padding: 10px;
+}
+
+#main-tab-content{
+  padding-top: 10px;
+  margin-top: -2;
+  border-top: 8px solid #1677b3;
 }

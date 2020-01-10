@@ -1,28 +1,17 @@
 #promotion{
-  background-image: url('../resource/straws-tileable.jpg');
   width: 100%;
   border-bottom: 1px solid gray;
-  padding-top: 30px;
 }
 
 #promotion-info{
   display: grid;
-  grid-template-columns: 3fr 3fr 3fr;
-  grid-template-rows: auto;
-}
-
-#promotion-header{
-  padding: 6px 2%;
-  margin: 0px;
-  font-size: 18px;
-  background-color: #144a74;
-  color: #ffffff;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .promotion-pad{
-  width: 400px;
+  width: 310px;
   border: 1px solid GRAY;
-  margin: 10px auto;
+  margin: 10px;
   border-radius: 4px;
 }
 .promotion-pad img{
@@ -30,13 +19,13 @@
 }
 
 .promotion-pad:hover{
-  box-shadow: 1px 1px 4px 1px #000000;
+  box-shadow: 1px 1px 4px 1px #000;
 }
 
 .promotion-desc{
   padding: 18px;
   margin: 0px;
-  font-size: 14px;
+  font-size: 0.9em;
   text-align: justify;
 }
 
@@ -45,11 +34,11 @@
 }
 
 .promotion-detail{
-  color: gray
+  color: GRAY
 }
 
 .amazing-price{
-  font-size: 20px;
+  font-size: 1.2em;
   color: RED;
 }
 
@@ -57,6 +46,8 @@
   animation-name: loading;
   animation-duration: 1s;
   animation-iteration-count: infinite;
+  text-align: center;
+  margin: 0px;
 }
 
 @keyframes loading {

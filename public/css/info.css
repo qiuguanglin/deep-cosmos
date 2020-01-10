@@ -1,0 +1,41 @@
+#info-pad{
+  position: fixed;
+  left: 38%;
+  top: 12%;
+  z-index: 9;
+  box-shadow: -1px 4px 6px 1px #000;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 320px;
+  border-bottom: 40px solid #1677b3;
+}
+
+#info-pad h2{
+  margin:0;
+  border-radius: 8px 8px 0px 0px;
+  padding: 8px 0px;
+  text-align: center;
+  font-size: 1.5em;
+  background-color: #1677b3;
+  color: #fff;
+}
+
+#info-pad p, #embededHTML{
+  text-align: justify;
+  margin: 0px;
+  font-size: 1em;
+  padding: 0px 18px;
+}
+
+#info-close{
+  text-align: center;
+  margin: 18px 0px 18px;
+}
+
+#info-pad button{
+  padding: 10px 26px;
+  border-radius: 6px;
+  background-color: #1677b3;
+  color: #fff;
+  font-size: 0.8em;
+}

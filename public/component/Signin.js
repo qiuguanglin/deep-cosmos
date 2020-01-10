@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import RegeditPanel from './Regedit';
 import LoginPanel from './Login';
+import Logo from './Logo';
 
 class SigninPanel extends Component{
   constructor(props){
@@ -49,18 +50,5 @@ class AccountPanel extends Component{
     );
   }
 }
-
-const Logo = ()=> (
-  <h4 id="legend">
-    <label id="deep">
-      <span style={{fontSize: '60px'}}>D</span>
-      <span style={{fontSize: '30px'}}>eep</span>
-    </label>
-    <label id="cosmos">
-      <span style={{fontSize: '30px'}}>C</span>
-      osmos
-    </label>
-  </h4>
-);
 
 export default SigninPanel;

@@ -6,6 +6,7 @@ const SearchResultPanel = ({results, currencyFormatRegx}) => {
     //format the price as currency
     totalPrice = results.totalPrice.toFixed(2).replace(currencyFormatRegx, '$1,');
   }
+
   const tableContent = (results && results.flights.length) ?
     results.flights.map(((res, index)=>
       <tr key={index} className="flightsInfo">
@@ -29,21 +30,21 @@ const SearchResultPanel = ({results, currencyFormatRegx}) => {
   return(
     <div id="searchResult">
         <table border="0">
-        <thead>
-            <tr>
-              <th>出发地</th>
-              <th>目的地</th>
-              <th>经站数</th>
-              <th>停靠星球</th>
-              <th>乘坐飞船</th>
-              <th>距离</th>
-              <th>历时</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableContent}
-            {purchaseContent}
-          </tbody>
+          <thead className={tableContent ? 'search-table-feeded' : 'search-table-unfeeded'}>
+              <tr>
+                <th>出发地</th>
+                <th>目的地</th>
+                <th>经站数</th>
+                <th>停靠星球</th>
+                <th>乘坐飞船</th>
+                <th>距离</th>
+                <th>历时</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tableContent}
+              {purchaseContent}
+            </tbody>
         </table>
     </div>
   );

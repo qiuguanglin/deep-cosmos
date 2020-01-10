@@ -1,7 +1,7 @@
 import React from 'react';
 import {Signout} from '../rest/UserRestful';
 
-const Navigation = ({onLanguageChanged, onSigninClick, loginFlag, onSignoutStatus, displayingName})=>{
+const Navigation = ({onLanguageChanged, onSigninClick, onToggleInfoWindow, loginFlag, onSignoutStatus, displayingName})=>{
   const onSignoutClicked = ()=>{
     Signout((err, res) => onSignoutStatus(err ? true : !res.success));
   }
@@ -17,12 +17,18 @@ const Navigation = ({onLanguageChanged, onSigninClick, loginFlag, onSignoutStatu
           <a href="#" onClick={onSigninClick}><img src="./resource/icon/user-icon.png"/> 我的账户</a>
         </span>)
       }
+
+      <a href="#" onClick={onToggleInfoWindow} id="1">关于深空星际</a>
+
+      <a href="#" onClick={onToggleInfoWindow} id="2">联系我们</a>
+
       <span>
         <select name="languages" onChange={onLanguageChanged}>
           <option value="ch">简体中文</option>
-          <option value="en">英文</option>
+          <option value="en">English</option>
         </select>
       </span>
+
   </div>)
 }
 

@@ -24,7 +24,7 @@
 #tabs button{
   margin: 4px 0px;
   padding: 8px 12px;
-  font-size: 14px;
+  font-size: 0.9em;
 }
 
 .onFocus{
@@ -38,31 +38,36 @@
 }
 
 #login-panel{
-  font-size: 15px;
+  font-size: 0.9em;
 }
 
 .hint{
-  font-size: 12px;
+  font-size: 0.65px;
   color: green;
+  margin-top: 8px;
 }
 
 #legend{
   margin: 0px;
   padding: 8px;
-  color: #ffffff;
-  font-weight: bolder;
   font-family: Serif, "Times New Roman";
+  font-size: 1.4em;
 }
 
 #deep{
-  color: #ff0000;
+  color: #144a74;
 }
 #cosmos{
-  color: Orange;
+  color: #d6a01d;
+}
+.text-rotate{
+  font-size: 1.2em;
+  display: inline-block;
+  transform: rotate(-40deg);
 }
 
 .notation{
-  font-size: 14px;
+  font-size: 0.8em;
   color: red;
   font-weight: bold;
 }
@@ -71,9 +76,10 @@
   background-color: #0371d9;
   padding: 6px 20px;
   color: #ffffff;
-  font-size: 10px;
+  font-size: 0.6em;
   border-radius: 6px;
   width: 250px;
+  margin-top: 8px;
 }
 
 .textField{

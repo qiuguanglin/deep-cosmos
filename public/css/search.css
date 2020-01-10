@@ -1,9 +1,7 @@
 #search{
   text-align: center;
-  font-size: 15px;
-  padding: 10px 0px 2px 0px;
-  background-image: url('../resource/subtle-light.jpg');
 }
+
 .searchFlightButton{
     margin-left: 10px;
 }
@@ -11,7 +9,6 @@
 .pickList{
   line-height: 24px;
   border-radius: 6px;
-  border: none;
 }
 
 #search-switch-direction{
@@ -19,7 +16,7 @@
   cursor: pointer;
 }
 #search-switch-direction a{
-  font-size: 14px;
+  font-size: 0.8em;
   color: gray;
   text-decoration: none;
 }

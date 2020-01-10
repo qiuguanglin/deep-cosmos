@@ -7,6 +7,8 @@ import SearchResultPanel from './component/SearchResult';
 import PromotionPanel from './component/Promotion';
 import FooterPanel from './component/Footer';
 import SigninPanel from './component/Signin';
+import AboutPanel from './component/About';
+import ContactPanel from './component/Contact';
 import {AmIin} from './rest/UserRestful';
 
 class App extends Component{
@@ -18,13 +20,21 @@ class App extends Component{
       searchResults: null,
       wannaSignin: false,
       displayingName: '',
+      tabToggled: false,
+      modalWindowNumber: 0
+    }
+
+    this.ModalWindowMap = {
+      1: <AboutPanel onToggleInfoWindow={this.onToggleInfoWindow.bind(this)}/>,
+      2: <ContactPanel onToggleInfoWindow={this.onToggleInfoWindow.bind(this)}/>
     }
 
     this.onLanguageChanged = this.onLanguageChanged.bind(this);
     this.onSigninStatus = this.onSigninStatus.bind(this);
     this.onSignoutStatus = this.onSignoutStatus.bind(this);
     this.onSearchResult = this.onSearchResult.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
+    this.onTabToggled = this.onTabToggled.bind(this);
+    this.onToggleInfoWindow = this.onToggleInfoWindow.bind(this);
     this.currencyFormatRegx = /(\d)(?=(\d{3})+\.)/g;
   }
 
@@ -53,34 +63,71 @@ class App extends Component{
     this.setState({searchResults: results});
   }
 
-  //hide the login window when ESC key is pressed
-  onKeyDown(event){
-    if(!this.state.wannaSignin)return;
-    this.setState({wannaSignin: event.keyCode !== 27})
+  onTabToggled(e){
+    const isTabToggled = this.state.tabToggled;
+    const className = e.target.className;
+
+    if((isTabToggled && className === 'main-tab-toggled')
+    || (!isTabToggled && className === 'main-tab-toggled')){
+      return;
+    }
+
+    const tabToggled = !this.state.tabToggled;
+    this.setState({tabToggled});
+  }
+
+  onToggleInfoWindow(e){
+    const windowId = e.target.id;
+    //when the toggling is triggered by the button inside the modal window, its id is empty string
+    //so setting the modalWindowNumber 0 will hide the modal window as expected
+    const modalWindowNumber = isNaN(parseInt(windowId)) ? 0 : windowId;
+    this.setState({modalWindowNumber});
   }
 
   render(){
-    const {loginFlag, searchResults, wannaSignin, displayingName} = this.state;
-
+    const {loginFlag, searchResults, wannaSignin, displayingName, tabToggled, modalWindowNumber} = this.state;
     return(
-      <div>
+      <div id="root">
+        {this.ModalWindowMap[modalWindowNumber]}
+
         {wannaSignin ?
           <SigninPanel
           onClosingSigninBox={() => this.setState({wannaSignin: false})}
           onSigninStatus={this.onSigninStatus}/>
           : null}
 
-        <div id="mainPanel" className={wannaSignin ? 'blurBg' : ''} onKeyDown={this.onKeyDown}>
+        <div id="mainPanel" className={wannaSignin || (modalWindowNumber > 0) ? 'blurBg' : ''}>
           <Navigation onLanguageChanged={this.onLanguageChanged}
           onSigninClick={() => this.setState({wannaSignin: true})}
           onSignoutStatus={this.onSignoutStatus}
+          onToggleInfoWindow={this.onToggleInfoWindow}
           loginFlag={loginFlag}
-          displayingName={displayingName}/>
+          displayingName={displayingName}
+          />
 
           <TopPanel/>
-          <SearchPanel onSearchResult={this.onSearchResult}/>
-          <SearchResultPanel results={searchResults} currencyFormatRegx={this.currencyFormatRegx}/>
-          <PromotionPanel currencyFormatRegx={this.currencyFormatRegx}/>
+
+          <div>
+            <div id="main-tab">
+              <button className={tabToggled ? 'main-tab-toggled' : 'main-tab-untoggled'} onClick={this.onTabToggled}>
+                特惠套餐
+              </button>
+              <button className={tabToggled ? 'main-tab-untoggled' : 'main-tab-toggled'} onClick={this.onTabToggled}>
+                出行搜索
+              </button>
+            </div>
+
+            <div id="main-tab-content">
+              {
+                tabToggled ? (<PromotionPanel currencyFormatRegx={this.currencyFormatRegx}/>) : (
+                  <div>
+                    <SearchPanel onSearchResult={this.onSearchResult}/>
+                    <SearchResultPanel results={searchResults} currencyFormatRegx={this.currencyFormatRegx}/>
+                  </div>
+                )
+              }
+            </div>
+          </div>
           <FooterPanel/>
         </div>
       </div>
