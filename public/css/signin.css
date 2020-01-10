@@ -1,7 +1,7 @@
 #signin{
   position: fixed;
   left: 38%;
-  top: 20%;
+  top: 12%;
   z-index: 9;
   box-shadow: -1px 0px 6px 1px #000;
   border-radius: 8px;
@@ -42,7 +42,7 @@
 }
 
 .hint{
-  font-size: 0.65px;
+  font-size: 0.9em;
   color: green;
   margin-top: 8px;
 }
@@ -67,7 +67,7 @@
 }
 
 .notation{
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: red;
   font-weight: bold;
 }

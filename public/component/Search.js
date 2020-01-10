@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Search} from '../rest/SearchRestful';
 import {Data} from '../rest/DataRestful';
+import {FormattedHTMLMessage} from 'react-intl';
 
 class SearchPanel extends Component{
   constructor(props){
@@ -109,26 +110,26 @@ class SearchPanel extends Component{
           <input list="beginStop"
             className="pickList"
             value={beginning}
-            onChange={this.onBeginningChange} placeholder="起点星球" required/>
+            onChange={this.onBeginningChange} placeholder="起点星球/beginning" required/>
           <datalist id="beginStop">
             {this.dropdownData}
           </datalist>
 
           <span id="search-switch-direction" onClick={this.onSwitchingDirection}>
             <span className="arrow left-arrow"></span>
-            <a href="#">换</a>
+            <FormattedHTMLMessage id="search-arrow"/>
             <span className="arrow right-arrow"></span>
           </span>
 
           <input list="destination"
             className="pickList"
             value={destination}
-            onChange={this.onDestinationChange} placeholder="终点星球" required/>
+            onChange={this.onDestinationChange} placeholder="终点星球/destination" required/>
           <datalist id="destination">
             {this.dropdownData}
           </datalist>
 
-          <input type="submit" value="搜索" className="searchFlightButton general-submit-btn"/>
+          <input type="submit" value="搜索/Search" className="searchFlightButton general-submit-btn"/>
         </form>
       </div>
     );

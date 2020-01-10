@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {LoginUser} from '../rest/UserRestful';
+import {FormattedMessage} from 'react-intl';
 
 class LoginPanel extends Component{
   constructor(props){
@@ -22,8 +23,8 @@ class LoginPanel extends Component{
 
     if(username && password){
       LoginUser(username, password, (err, data)=>{
-        if(err)return this.setState({message: '服务器错误，请稍后再试'});
-        if(!data.success)return this.setState({message: '账号或密码不正确'});
+        if(err)return this.setState({message: <FormattedMessage id="login-server-err"/>});
+        if(!data.success)return this.setState({message: <FormattedMessage id="login-err-message"/>});
 
         const displayingName = data.message.nickname || data.message.username;
         onSigninStatus({isSuccess: data.success, displayingName});
@@ -44,11 +45,11 @@ class LoginPanel extends Component{
     return(
       <div id="login-panel">
         <form onSubmit={this.onSubmitHandler}>
-          <input size="40" className="textField" value={username} placeholder="账号" onChange={this.onUserNameChange} required/><p/>
-          <input size="40" className="textField" type="password" value={password} placeholder="密码" onChange={this.onPasswordChange} required/><p/>
+          <input size="40" className="textField" value={username} placeholder="账号/ID" onChange={this.onUserNameChange} required/><p/>
+          <input size="40" className="textField" type="password" value={password} placeholder="密码/Password" onChange={this.onPasswordChange} required/><p/>
           <span className="notation">{message}</span>
-          <h4 className="hint">忘记密码?</h4>
-          <input type="submit" className="submit" value="登陆"/>
+          <h4 className="hint"><FormattedMessage id="login-forgotten"/></h4>
+          <input type="submit" className="submit" value="登陆/Login"/>
         </form>
       </div>
     );

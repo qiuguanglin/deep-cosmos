@@ -39,6 +39,10 @@
   cursor: pointer;
 }
 
+.search-purchase-button{
+  margin-left: 12px;
+}
+
 #search-purchaseContent *{
   /* margin-left: 10px; */
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Signout} from '../rest/UserRestful';
+import {FormattedMessage} from 'react-intl';
 
 const Navigation = ({onLanguageChanged, onSigninClick, onToggleInfoWindow, loginFlag, onSignoutStatus, displayingName})=>{
   const onSignoutClicked = ()=>{
@@ -11,20 +12,22 @@ const Navigation = ({onLanguageChanged, onSigninClick, onToggleInfoWindow, login
       {
         loginFlag ?
         (<span>
-          <span className="hello">你好 {displayingName}</span><a href="#" onClick={onSignoutClicked}>退出</a>
-        </span>) :
+          <span className="hello">
+            <FormattedMessage id="navi-hello"/>
+           {displayingName}</span><a href="#" onClick={onSignoutClicked}><FormattedMessage id="navi-logout"/></a>
+          </span>) :
         (<span>
-          <a href="#" onClick={onSigninClick}><img src="./resource/icon/user-icon.png"/> 我的账户</a>
+          <a href="#" onClick={onSigninClick}><img src="./resource/icon/user-icon.png"/> <FormattedMessage id="navi-account"/></a>
         </span>)
       }
 
-      <a href="#" onClick={onToggleInfoWindow} id="1">关于深空星际</a>
+      <a href="#" onClick={onToggleInfoWindow} id="1"><FormattedMessage id="navi-about"/></a>
 
-      <a href="#" onClick={onToggleInfoWindow} id="2">联系我们</a>
+      <a href="#" onClick={onToggleInfoWindow} id="2"><FormattedMessage id="navi-contact"/></a>
 
       <span>
         <select name="languages" onChange={onLanguageChanged}>
-          <option value="ch">简体中文</option>
+          <option value="zh">简体中文</option>
           <option value="en">English</option>
         </select>
       </span>

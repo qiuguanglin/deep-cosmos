@@ -1,12 +1,13 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 
 const FooterPanel = ()=>{
   return(
     <footer>
       <div id="copyright">
-        版权所有 公元2094-2138, deepcosmos.com. All Rights Reserved.
+        <FormattedMessage id="footer-rights-reserved"/>
         <br/>
-        <img src="./resource/icon/house.png"/> 月球第18号基地备8613928727270号
+        <img src="./resource/icon/house.png"/> <FormattedMessage id="footer-address"/>
       </div>
     </footer>
   );

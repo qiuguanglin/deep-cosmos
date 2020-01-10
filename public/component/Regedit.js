@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {NewUser} from '../rest/UserRestful';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 const REGEXP_PHONE = /^1\d{10}$/;
 const REGEXP_MAIL = /^\w+@(qq|126|163|tom|gmail|msn)\.com$/;
@@ -46,9 +47,9 @@ class RegeditPanel extends Component{
 
     if(isUsernameValidated && isPasswordValidated){
       NewUser({username, password, nickname}, (err, data) => {
-        if(err)return this.setState({message: '服务器错误，请稍后再试'});
+        if(err)return this.setState({message: <FormattedMessage id="login-server-err"/>});
         //here the message comes errocode from backend, a better way is to map the errocode to a specific message constant
-        if(!data.success)return this.setState({message: data.message == '19' ? '用户名已存在' : data.message});
+        if(!data.success)return this.setState({message: data.message == '19' ? <FormattedMessage id="reg-username-taken"/> : data.message});
 
         const displayingName = data.message.nickname || data.message.username;
         onSigninStatus({isSuccess: data.success, displayingName});
@@ -75,35 +76,32 @@ class RegeditPanel extends Component{
     return(
       <div id="regedit">
         <form onSubmit={this.onSubmitHandler}>
-          <input size="40" className="textField" placeholder="邮箱/手机"
+          <input size="40" className="textField" placeholder="邮箱/手机/Email/Phone"
           value={username} onChange={this.onUserNameChange}
           required/>
           {
             (username && !isUsernameValidated) ?
-            <span className="notation"><br/>账号格式不正确</span> : null
+            <span className="notation"><br/><FormattedMessage id="reg-id-format"/></span> : null
           }
           <p/>
 
-          <input size="40" className="textField" type="password" placeholder="密码"
+          <input size="40" className="textField" type="password" placeholder="密码/Password"
           value={password} onChange={this.onPasswordChange}
           required/>
           {
             (password && !isPasswordValidated) ?
-            <span className="notation"><br/>密码格式不正确</span> : null
+            <span className="notation"><br/><FormattedMessage id="reg-pass-format"/></span> : null
           }<p/>
           <span className="notation">{message}</span>
 
-          <input size="40" className="textField" type="text" placeholder="昵称"
+          <input size="40" className="textField" type="text" placeholder="昵称/Nickname"
           value={nickname} onChange={this.onNicknameChange}/>
 
           <p className="hint">
-            * 账号为11位手机号码或者邮箱地址<br/>
-            * 密码必须是6-12位<br/>
-            * 密码必须是数字、字母、特殊字符的组合<br/>
-            * 密码必须包含至少有一个大写字母
+            <FormattedHTMLMessage id="reg-requirements"/>
           </p>
 
-          <input type="submit" className="submit" value="注册"/>
+          <input type="submit" className="submit" value="注册/Regedit"/>
         </form>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 
 const SearchResultPanel = ({results, currencyFormatRegx}) => {
   let totalPrice = 0;
@@ -16,15 +17,15 @@ const SearchResultPanel = ({results, currencyFormatRegx}) => {
         <td>{res.stops.join(', ')}</td>
         <td>{res.shuttles}</td>
         <td>{res.sectionDistance} KM</td>
-        <td>{res.duration} 小时</td>
+        <td>{res.duration} <FormattedMessage id="search-result-hour"/></td>
       </tr>
     )): null;
 
     const purchaseContent = results ?
       <tr id="search-purchaseContent"><td colSpan="7">
         <img src="../resource/icon/cart.png"/>
-        总价 CNY {totalPrice}
-        <button className="general-submit-btn">购买</button>
+        <FormattedMessage id="search-purchase-price"/> <strong>{totalPrice}</strong>
+        <button className="general-submit-btn search-purchase-button"><FormattedMessage id="search-purchase"/></button>
       </td></tr> : null
 
   return(
@@ -32,13 +33,13 @@ const SearchResultPanel = ({results, currencyFormatRegx}) => {
         <table border="0">
           <thead className={tableContent ? 'search-table-feeded' : 'search-table-unfeeded'}>
               <tr>
-                <th>出发地</th>
-                <th>目的地</th>
-                <th>经站数</th>
-                <th>停靠星球</th>
-                <th>乘坐飞船</th>
-                <th>距离</th>
-                <th>历时</th>
+                <th><FormattedMessage id="search-result-from"/></th>
+                <th><FormattedMessage id="search-result-to"/></th>
+                <th><FormattedMessage id="search-result-stops-num"/></th>
+                <th><FormattedMessage id="search-result-stop-name"/></th>
+                <th><FormattedMessage id="search-result-by"/></th>
+                <th><FormattedMessage id="search-result-distance"/></th>
+                <th><FormattedMessage id="search-result-duration"/></th>
               </tr>
             </thead>
             <tbody>

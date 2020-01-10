@@ -10,13 +10,16 @@ import SigninPanel from './component/Signin';
 import AboutPanel from './component/About';
 import ContactPanel from './component/Contact';
 import {AmIin} from './rest/UserRestful';
+import {IntlProvider, FormattedMessage} from 'react-intl';
+import EN from "./translate/en.json";
+import ZH from "./translate/zh.json";
 
 class App extends Component{
   constructor(){
     super();
     this.state = {
       loginFlag: false,
-      language: 'ch',
+      language: 'zh',
       searchResults: null,
       wannaSignin: false,
       displayingName: '',
@@ -47,7 +50,7 @@ class App extends Component{
   }
 
   onLanguageChanged(e){
-    console.log(e.target.value)
+    this.setState({language: e.target.value});
   }
 
   onSigninStatus({isSuccess, displayingName}){
@@ -85,8 +88,11 @@ class App extends Component{
   }
 
   render(){
-    const {loginFlag, searchResults, wannaSignin, displayingName, tabToggled, modalWindowNumber} = this.state;
+    const {loginFlag, searchResults, wannaSignin, displayingName, tabToggled, modalWindowNumber, language} = this.state;
+    const LANGUAGE = language === 'zh' ? ZH : EN;
+
     return(
+      <IntlProvider locale="zh" messages={LANGUAGE}>
       <div id="root">
         {this.ModalWindowMap[modalWindowNumber]}
 
@@ -110,10 +116,10 @@ class App extends Component{
           <div>
             <div id="main-tab">
               <button className={tabToggled ? 'main-tab-toggled' : 'main-tab-untoggled'} onClick={this.onTabToggled}>
-                特惠套餐
+                <FormattedMessage id="main-tab-promotion"/>
               </button>
               <button className={tabToggled ? 'main-tab-untoggled' : 'main-tab-toggled'} onClick={this.onTabToggled}>
-                出行搜索
+                <FormattedMessage id="main-tab-search"/>
               </button>
             </div>
 
@@ -131,6 +137,7 @@ class App extends Component{
           <FooterPanel/>
         </div>
       </div>
+      </IntlProvider>
     )
   }
 }
