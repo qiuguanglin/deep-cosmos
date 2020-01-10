@@ -12,8 +12,8 @@ const Navigation = ({onLanguageChanged, onSigninClick, onToggleInfoWindow, login
       {
         loginFlag ?
         (<span>
+          <FormattedMessage id="navi-hello"/>
           <span className="hello">
-            <FormattedMessage id="navi-hello"/>
            {displayingName}</span><a href="#" onClick={onSignoutClicked}><FormattedMessage id="navi-logout"/></a>
           </span>) :
         (<span>
@@ -30,7 +30,7 @@ const Navigation = ({onLanguageChanged, onSigninClick, onToggleInfoWindow, login
       </a>
 
       <a href="#" onClick={onToggleInfoWindow} id="2">
-        <img src="./resource/icon/phone.png"/> 
+        <img src="./resource/icon/phone.png"/>
         <FormattedMessage id="navi-contact"/>
       </a>
 

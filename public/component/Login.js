@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {LoginUser} from '../rest/UserRestful';
 import {FormattedMessage} from 'react-intl';
+import GeneralInputPanel from './GeneralInput';
+import GeneralButtonPanel from './GeneralButton';
 
 class LoginPanel extends Component{
   constructor(props){
@@ -45,11 +47,16 @@ class LoginPanel extends Component{
     return(
       <div id="login-panel">
         <form onSubmit={this.onSubmitHandler}>
-          <input size="40" className="textField" value={username} placeholder="账号/ID" onChange={this.onUserNameChange} required/><p/>
-          <input size="40" className="textField" type="password" value={password} placeholder="密码/Password" onChange={this.onPasswordChange} required/><p/>
+          <GeneralInputPanel size="40" className="textField" value={username}
+          placeholder="login-field-username" onChange={this.onUserNameChange} required="required"/><p/>
+
+          <GeneralInputPanel size="40" className="textField" type="password"
+          value={password} placeholder="login-field-password" onChange={this.onPasswordChange} required="required"/><p/>
+
           <span className="notation">{message}</span>
           <h4 className="hint"><FormattedMessage id="login-forgotten"/></h4>
-          <input type="submit" className="submit" value="登陆/Login"/>
+
+          <GeneralButtonPanel type="submit" className="submit" value="login-button"/>
         </form>
       </div>
     );

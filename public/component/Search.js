@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Search} from '../rest/SearchRestful';
 import {Data} from '../rest/DataRestful';
+import GeneralInputPanel from './GeneralInput';
 import {FormattedHTMLMessage, FormattedMessage} from 'react-intl';
+import GeneralButtonPanel from './GeneralButton';
 
 class SearchPanel extends Component{
   constructor(props){
@@ -107,10 +109,10 @@ class SearchPanel extends Component{
     return(
       <div id="search">
         <form onSubmit={this.handleSubmit}>
-          <input list="beginStop"
+          <GeneralInputPanel list="beginStop"
             className="pickList"
             value={beginning}
-            onChange={this.onBeginningChange} placeholder="起点星球/From" required/>
+            onChange={this.onBeginningChange} placeholder="search-field-from" required="required"/>
           <datalist id="beginStop">
             {this.dropdownData}
           </datalist>
@@ -121,15 +123,15 @@ class SearchPanel extends Component{
             <span className="arrow right-arrow"></span>
           </span>
 
-          <input list="destination"
+          <GeneralInputPanel list="destination"
             className="pickList"
             value={destination}
-            onChange={this.onDestinationChange} placeholder="终点星球/To" required/>
+            onChange={this.onDestinationChange} placeholder="search-field-to" required/>
           <datalist id="destination">
             {this.dropdownData}
           </datalist>
 
-          <input type="submit" value="搜索/Search" className="searchFlightButton general-submit-btn"/>
+          <GeneralButtonPanel type="submit" value="search-button" className="searchFlightButton general-submit-btn"/>
         </form>
       </div>
     );

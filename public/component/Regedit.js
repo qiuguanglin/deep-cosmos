@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {NewUser} from '../rest/UserRestful';
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
+import GeneralInputPanel from './GeneralInput';
+import GeneralButtonPanel from './GeneralButton';
 
 const REGEXP_PHONE = /^1\d{10}$/;
 const REGEXP_MAIL = /^\w+@(qq|126|163|tom|gmail|msn)\.com$/;
@@ -76,32 +78,34 @@ class RegeditPanel extends Component{
     return(
       <div id="regedit">
         <form onSubmit={this.onSubmitHandler}>
-          <input size="40" className="textField" placeholder="邮箱/手机/Email/Phone"
+          <GeneralInputPanel size="40" className="textField" placeholder="regedit-field-username"
           value={username} onChange={this.onUserNameChange}
-          required/>
+          required="required"/>
+
           {
             (username && !isUsernameValidated) ?
             <span className="notation"><br/><FormattedMessage id="reg-id-format"/></span> : null
           }
           <p/>
 
-          <input size="40" className="textField" type="password" placeholder="密码/Password"
+          <GeneralInputPanel size="40" className="textField" type="password" placeholder="regedit-field-password"
           value={password} onChange={this.onPasswordChange}
-          required/>
+          required="required"/>
+
           {
             (password && !isPasswordValidated) ?
             <span className="notation"><br/><FormattedMessage id="reg-pass-format"/></span> : null
           }<p/>
           <span className="notation">{message}</span>
 
-          <input size="40" className="textField" type="text" placeholder="昵称/Nickname"
+          <GeneralInputPanel size="40" className="textField" type="text" placeholder="regedit-field-nickname"
           value={nickname} onChange={this.onNicknameChange}/>
 
           <p className="hint">
             <FormattedHTMLMessage id="reg-requirements"/>
           </p>
 
-          <input type="submit" className="submit" value="注册/Regedit"/>
+          <GeneralButtonPanel type="submit" className="submit" value="regedit-button"/>
         </form>
       </div>
     );

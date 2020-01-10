@@ -43,7 +43,7 @@
 }
 
 .hint{
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: green;
   margin-top: 8px;
 }
@@ -75,9 +75,9 @@
 
 .submit{
   background-color: #0371d9;
-  padding: 6px 20px;
+  padding: 12px 20px;
   color: #ffffff;
-  font-size: 0.6em;
+  font-size: 0.9em;
   border-radius: 6px;
   width: 250px;
   margin-top: 8px;
