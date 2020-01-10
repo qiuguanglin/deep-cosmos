@@ -1,14 +1,12 @@
 import React from 'react';
 import InfoPanel from './Info';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 const ContactPanel = ({onToggleInfoWindow}) => {
-    const createHTML = () => {
-      return {__html: '\
-        电话：8613928727270<br/>\
-        邮箱：qiuguanglin@hotmail.com\
-      '}
-    };
-    return (<InfoPanel onToggleInfoWindow={onToggleInfoWindow} title="联系我们" createHTML={createHTML}/>);
+  const contact = <FormattedMessage id="contact-title"/>;
+  const content = <FormattedHTMLMessage id="contact-content"/>;
+
+  return (<InfoPanel onToggleInfoWindow={onToggleInfoWindow} title={contact} content={content}/>);
 }
 
 export default ContactPanel;
