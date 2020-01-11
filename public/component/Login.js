@@ -45,7 +45,7 @@ class LoginPanel extends Component{
   render(){
     const {username, password, message} = this.state;
     return(
-      <div id="login-panel">
+      <div>
         <form onSubmit={this.onSubmitHandler}>
           <GeneralInputPanel size="40" className="textField" value={username}
           placeholder="login-field-username" onChange={this.onUserNameChange} required="required"/><p/>

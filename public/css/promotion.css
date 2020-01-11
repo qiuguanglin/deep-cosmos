@@ -15,7 +15,7 @@
   border-radius: 4px;
 }
 .promotion-pad img{
-    width: 100%;
+  width: 100%;
 }
 
 .promotion-pad:hover{
@@ -25,7 +25,7 @@
 .promotion-desc{
   padding: 18px;
   margin: 0px;
-  font-size: 0.9em;
+  font-size: 1.6rem;
   text-align: justify;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .amazing-price{
-  font-size: 1.2em;
+  font-size: 1.8rem;
   color: RED;
 }
 

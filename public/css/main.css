@@ -1,7 +1,3 @@
-body{
-  margin: 0;
-  background: #fff;
-}
 .blurBg{
   animation-name: blurBg;
   animation-duration: 2s;
@@ -23,21 +19,16 @@ body{
   color: #fff
 }
 
-#root{
-  width: 1000px;
-  margin: 0 auto;
-}
-
 #main-tab{
   margin: 0 auto;
-  width: 500px;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
 #main-tab button{
-  padding: 14px 0px;
-  font-size: 1.2em;
+  padding: 10px 0px;
+  font-size: 1.8rem;
   color: #fff;
   border: none;
 }

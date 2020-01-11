@@ -102,7 +102,7 @@ class App extends Component{
             onSigninStatus={this.onSigninStatus}/>
             : null}
 
-          <div id="mainPanel" className={wannaSignin || (modalWindowNumber > 0) ? 'blurBg' : ''}>
+          <div className={wannaSignin || (modalWindowNumber > 0) ? 'blurBg' : ''}>
             <Navigation onLanguageChanged={this.onLanguageChanged}
             onSigninClick={() => this.setState({wannaSignin: true})}
             onSignoutStatus={this.onSignoutStatus}

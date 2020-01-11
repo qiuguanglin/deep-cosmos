@@ -6,10 +6,11 @@
 
 #topPanel h2{
   margin: 0px;
+  font-size: 3rem;
 }
 
 #topPanel h1{
-  font-size: 3.8em;
+  font-size: 6rem;
   margin-bottom: 0px;
 }
 
@@ -17,11 +18,11 @@
   margin: 0px;
 }
 #topPanel img{
-  width: 180px;
+  width: 200px;
 }
 
 #top-logo1{
-  color: #144a74; 
+  color: #144a74;
 }
 
 #top-logo2{

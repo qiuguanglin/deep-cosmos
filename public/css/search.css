@@ -3,7 +3,7 @@
 }
 
 .searchFlightButton{
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .pickList{
@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 #search-switch-direction a{
-  font-size: 0.8em;
+  font-size: 0.8rem;
   color: gray;
   text-decoration: none;
 }

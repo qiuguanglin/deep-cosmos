@@ -1,7 +1,6 @@
 #searchResult{
   border-bottom: 0px solid gray;
   text-align: justify;
-  font-size: 0.9em;
 }
 
 #searchResult table{
@@ -15,9 +14,8 @@
   border-radius: 0px 10px 0px 0px;
 }
 #searchResult thead{
-  /* background-color: #1677b3; */
   color: #fff;
-  line-height: 40px;
+  line-height: 38px;
 }
 
 .search-table-feeded{
@@ -31,7 +29,7 @@
   background-color: #b2bbbe;
   text-align: center;
   line-height: 30px;
-  font-size: 0.84em;
+  font-size: 1.4rem;
 }
 
 .flightsInfo:hover{
@@ -43,14 +41,11 @@
   margin-left: 12px;
 }
 
-#search-purchaseContent *{
-  /* margin-left: 10px; */
-}
 #search-purchaseContent{
   text-align: right;
   padding: 0px 10px;
   color: green;
-  font-size: 0.84em;
+  font-size: 1.4rem;
 }
 #search-purchaseContent img{
   width: 18px;

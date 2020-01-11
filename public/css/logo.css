@@ -1,0 +1,24 @@
+#legend{
+  margin: 0px;
+  padding: 8px;
+  font-family: Serif, "Times New Roman";
+  font-size: 4rem;
+}
+
+#deep{
+  color: #144a74;
+}
+
+#deep span:first-child, #cosmos span:first-child{
+  font-size: 6rem;
+}
+
+#cosmos{
+  color: #d6a01d;
+}
+
+.text-rotate{
+  font-size: 3rem;
+  display: inline-block;
+  transform: rotate(-40deg);
+}
