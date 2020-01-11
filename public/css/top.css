@@ -2,6 +2,7 @@
   height: 340px;
   color: #000;
   text-align: center;
+  font-family: Impact, Sans-Serif
 }
 
 #topPanel h2{
@@ -9,9 +10,25 @@
   font-size: 3rem;
 }
 
+#topPanel h2 span:first-child{
+  color: #d6a01d;
+}
+
+#topPanel h2 span:last-child{
+  color: #144a74;
+}
+
 #topPanel h1{
   font-size: 6rem;
   margin-bottom: 0px;
+}
+
+#topPanel h1 span:first-child{
+  color: #144a74;
+}
+
+#topPanel h1 span:last-child{
+  color: #d6a01d;
 }
 
 #topPanel h3{
@@ -19,12 +36,4 @@
 }
 #topPanel img{
   width: 200px;
-}
-
-#top-logo1{
-  color: #144a74;
-}
-
-#top-logo2{
-  color: #d6a01d;
 }
