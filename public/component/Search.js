@@ -1,18 +1,20 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {Search} from '../rest/SearchRestful';
 import {Data} from '../rest/DataRestful';
 import GeneralInputPanel from './GeneralInput';
 import {FormattedHTMLMessage, FormattedMessage} from 'react-intl';
 import GeneralButtonPanel from './GeneralButton';
 
-class SearchPanel extends Component{
+class SearchPanel extends PureComponent{
   constructor(props){
     super(props);
+
     this.state = {
       beginning: '',
       destination: '',
       beginningID: '',
       destinationID: '',
+      planetList: []
     }
 
     this.onBeginningChange = this.onBeginningChange.bind(this);
@@ -64,21 +66,18 @@ class SearchPanel extends Component{
 
       const {flightsMap, planetList, routeCostMap} = data.message;
       this.flightsMap = flightsMap;
-      this.planetList = planetList;
       this.routeCostMap = routeCostMap;
-
-      this.dropdownData = planetList.map((planet, index) =>
-        <option value={planet.cname} key={index} title={planet.id}/>);
+      this.setState({planetList});
     });
   }
 
   handleSubmit(e){
     e.preventDefault();
     const {onSearchResult} = this.props;
-    const {beginning, destination, beginningID, destinationID} = this.state;
+    const {beginning, destination, beginningID, destinationID, planetList} = this.state;
 
     if(beginningID && destinationID && beginning && destination){
-      Search(beginningID, destinationID, this.flightsMap, this.planetList, this.routeCostMap, (err, data) => {
+      Search(beginningID, destinationID, this.flightsMap, planetList, this.routeCostMap, (err, data) => {
         if(err)throw err;
 
         const result = [];
@@ -88,6 +87,7 @@ class SearchPanel extends Component{
         for(let i=0; i<lines.length; i++){
           const {shuttles, stops, sectionDistance, duration} = lines[i];
           const [begin, end] = [stops[0], stops[stops.length - 1]];
+
           result.push({
             begin,
             end,
@@ -103,8 +103,14 @@ class SearchPanel extends Component{
     }
   }
 
+
+
   render(){
-    const {date, beginning, destination, message, isInputInvalid} = this.state;
+    const {date, beginning, destination, message, isInputInvalid, planetList} = this.state;
+    const {language}=this.props;
+
+    const dropdownData = planetList.map((planet, index) =>
+      <option value={language === 'zh' ? planet.cname : planet.name} key={index} title={planet.id}/>);
 
     return(
       <div id="search">
@@ -114,7 +120,7 @@ class SearchPanel extends Component{
             value={beginning}
             onChange={this.onBeginningChange} placeholder="search-field-from" required="required"/>
           <datalist id="beginStop">
-            {this.dropdownData}
+            {dropdownData}
           </datalist>
 
           <span id="search-switch-direction" onClick={this.onSwitchingDirection}>
@@ -128,7 +134,7 @@ class SearchPanel extends Component{
             value={destination}
             onChange={this.onDestinationChange} placeholder="search-field-to" required/>
           <datalist id="destination">
-            {this.dropdownData}
+            {dropdownData}
           </datalist>
 
           <GeneralButtonPanel type="submit" value="search-button" className="searchFlightButton general-submit-btn"/>

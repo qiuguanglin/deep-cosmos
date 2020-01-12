@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import ReactDOM from 'react-dom';
 import Navigation from './component/Navigation';
 import TopPanel from './component/Top';
@@ -14,7 +14,7 @@ import {IntlProvider, FormattedMessage} from 'react-intl';
 import EN from "./translate/en.json";
 import ZH from "./translate/zh.json";
 
-class App extends Component{
+class App extends PureComponent{
   constructor(){
     super();
     this.state = {
@@ -47,6 +47,13 @@ class App extends Component{
       const displayingName = data ? (data.message.nickname || data.message.username) : null;
       this.setState({loginFlag: err ? false : data.success, displayingName})
     });
+
+    //check the client language environment
+    let clientLang = 'en';
+    if(navigator.language && navigator.language.split){
+      clientLang = navigator.language.split(/[-_]/)[0];
+    }
+    this.setState({language: clientLang});
   }
 
   onLanguageChanged(e){
@@ -125,10 +132,10 @@ class App extends Component{
 
               <div id="main-tab-content">
                 {
-                  tabToggled ? (<PromotionPanel currencyFormatRegx={this.currencyFormatRegx}/>) : (
+                  tabToggled ? (<PromotionPanel language={language} currencyFormatRegx={this.currencyFormatRegx}/>) : (
                     <div>
-                      <SearchPanel onSearchResult={this.onSearchResult}/>
-                      <SearchResultPanel results={searchResults} currencyFormatRegx={this.currencyFormatRegx}/>
+                      <SearchPanel onSearchResult={this.onSearchResult} language={language}/>
+                      <SearchResultPanel results={searchResults} currencyFormatRegx={this.currencyFormatRegx} language={language}/>
                     </div>
                   )
                 }

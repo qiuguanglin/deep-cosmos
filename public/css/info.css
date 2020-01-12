@@ -20,8 +20,8 @@
 }
 
 #info-content, #embededHTML{
+  word-break: keep-all;
   line-height: 26px;
-  text-align:justify;
   margin: 0px 0px 50px 0px;
   font-size: 1.4rem;
   padding: 0px 18px;

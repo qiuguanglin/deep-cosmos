@@ -9,6 +9,7 @@
 }
 
 .promotion-pad{
+  cursor: pointer;
   width: 310px;
   border: 1px solid GRAY;
   margin: 10px;
@@ -26,7 +27,8 @@
   padding: 18px;
   margin: 0px;
   font-size: 1.6rem;
-  text-align: justify;
+  /* text-align: left; */
+  word-wrap: break-word;
 }
 
 .promotion-title{

@@ -2,7 +2,9 @@ import React from 'react';
 import {Signout} from '../rest/UserRestful';
 import {FormattedMessage} from 'react-intl';
 
-const Navigation = ({onLanguageChanged, onSigninClick, onToggleInfoWindow, loginFlag, onSignoutStatus, displayingName})=>{
+const Navigation = ({
+  onLanguageChanged, onSigninClick, onToggleInfoWindow,
+  loginFlag, onSignoutStatus, displayingName, defaultLang})=>{
   const onSignoutClicked = ()=>{
     Signout((err, res) => onSignoutStatus(err ? true : !res.success));
   }
@@ -35,7 +37,7 @@ const Navigation = ({onLanguageChanged, onSigninClick, onToggleInfoWindow, login
       </a>
 
       <span>
-        <select name="languages" onChange={onLanguageChanged}>
+        <select name="languages" onChange={onLanguageChanged} value={defaultLang}>
           <option value="zh">简体中文</option>
           <option value="en">English</option>
         </select>

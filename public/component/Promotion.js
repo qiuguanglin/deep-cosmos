@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {PromotionList} from '../rest/PromotionRestful';
 
-class PromotionPanel extends Component{
+class PromotionPanel extends PureComponent{
   constructor(props){
     super(props);
     this.state = {
@@ -15,27 +15,29 @@ class PromotionPanel extends Component{
       if(err)throw err;
       const promotions = data.message;
       if(promotions){
-          this.setState({promotions, isLoaded: true});
+        this.setState({promotions, isLoaded: true});
       }
     })
   }
 
   render(){
     const {isLoaded, promotions} = this.state;
-    const {currencyFormatRegx} = this.props;
+    const {currencyFormatRegx, language} = this.props;
+    const isEn = language !== 'zh';
 
     const promotionPad = (isLoaded && promotions.length) ?
     promotions.map(prom =>
       <div className="promotion-pad" key={prom.id}>
         <img src={`./resource/promotion/${prom.id}.jpg`}/>
         <h4 className="promotion-desc">
-          <span className="promotion-title">{prom.title}</span>
-          <span className="promotion-detail">{prom.detail}</span>
+          <span className="promotion-title">{isEn ? prom['en-title'] : prom.title}</span>
+          <br/>
+          <span className="promotion-detail">{isEn ? prom['en-detail'] : prom.detail}</span>
+          <br/>
           <span className="amazing-price">
-          {['惊爆价', '低至', '特价'][parseInt(Math.random() * 3)]}
-          {prom.price.toFixed(2).replace(currencyFormatRegx, '$1,')}
-          </span>。
-          <a href="#">去看看</a>
+            {(isEn ? ['On Sale', 'Low Price', 'Sold At'] : ['惊爆价', '低至', '特价'])[parseInt(Math.random() * 3)]}
+            {prom.price.toFixed(2).replace(currencyFormatRegx, '$1,')}
+          </span>
         </h4>
       </div>
     )
