@@ -14,5 +14,13 @@ footer{
 }
 
 #copyright img{
-  width: 20px;
+  width: 2rem;
+}
+
+#copyright h4{
+  margin: 0px;
+}
+#copyright h4 img{
+  width: 2.6rem;
+  margin: 6px 6px;
 }

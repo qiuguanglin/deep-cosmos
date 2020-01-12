@@ -44,7 +44,7 @@ class PromotionPanel extends PureComponent{
     : null;
 
     const loadingStatus = (!isLoaded || !promotions.length) ?
-    <h3 className="loadingStatus">{'加载中...'}</h3> : null;
+    <h3 className="loadingStatus">{language === 'zh' ? '加载中...' : 'Loading...'}</h3> : null;
 
     return(
       <div id="promotion">
