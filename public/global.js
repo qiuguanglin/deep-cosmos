@@ -11,7 +11,7 @@ const RemoteConfig = {
     port: 60000
   },
   production: {
-    host: 'http://49.235.159.64',
+    host: 'http://120.77.17.197',
     port: 60000
   },
   get baseUrl() {return `${this[process.env.NODE_ENV].host}:${this[process.env.NODE_ENV].port}`},
