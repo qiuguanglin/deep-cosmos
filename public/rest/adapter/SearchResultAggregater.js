@@ -69,7 +69,8 @@ const aggreateSectionDistance = (lines, routeCostMap, flightsMap) => {
       const spaceship = flightsMap[spaceshipNumber];
 
       line['sectionDistance'] = sum.toFixed(2);
-      line['duration'] = (sum / spaceship.speed).toFixed(1);
+      const hour = sum / spaceship.speed;
+      line['duration'] = {hour: Math.round(hour / 1), min: Math.round(hour % 1 * 60)};
   }
 }
 
