@@ -26,8 +26,7 @@ class SearchResultPanel extends PureComponent{
           <td>{res.shuttles.map(st=>st[lang])}</td>
           <td>{res.sectionDistance} KM</td>
           <td>
-            {res.duration.hour}<FormattedMessage id="search-result-hour"/>
-            {res.duration.min}<FormattedMessage id="search-result-min"/>
+            {res.duration.hour} <FormattedMessage id="search-result-hour"/> {res.duration.min} <FormattedMessage id="search-result-min"/>
           </td>
         </tr>
       )): null;
