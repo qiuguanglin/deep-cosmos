@@ -10,11 +10,11 @@ class SigninPanel extends Component{
   }
 
   render(){
-    const {onClosingSigninBox, onSigninStatus} = this.props;
+    const {onClosingSigninBox, onSigninStatus, csrfToken} = this.props;
     return(
       <div id="signin">
         <label id="closeSigninBox" onClick={onClosingSigninBox}>X</label>
-        <AccountPanel onSigninStatus={onSigninStatus}/>
+        <AccountPanel onSigninStatus={onSigninStatus} csrfToken={csrfToken}/>
       </div>
     );
   }
@@ -37,7 +37,7 @@ class AccountPanel extends Component{
 
   render(){
     const {toggled} = this.state;
-    const {onSigninStatus} = this.props;
+    const {onSigninStatus, csrfToken} = this.props;
 
     return(
       <div id="tabs">
@@ -45,7 +45,10 @@ class AccountPanel extends Component{
         <button onClick={this.onToggle} className={toggled ? 'onFocus' : null}><FormattedMessage id="login-tab-login"/></button>
         <button onClick={this.onToggle} className={toggled ? null : 'onFocus'}><FormattedMessage id="login-tab-regedit"/></button>
         <div id="tab-content">
-          {toggled ? <LoginPanel onSigninStatus={onSigninStatus}/> : <RegeditPanel onSigninStatus={onSigninStatus}/>}
+          {
+            toggled ? <LoginPanel onSigninStatus={onSigninStatus} csrfToken={csrfToken}/> :
+           <RegeditPanel onSigninStatus={onSigninStatus} csrfToken={csrfToken}/>
+         }
         </div>
       </div>
     );

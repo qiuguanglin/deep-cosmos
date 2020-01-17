@@ -10,6 +10,7 @@ import SigninPanel from './component/Signin';
 import AboutPanel from './component/About';
 import ContactPanel from './component/Contact';
 import {AmIin} from './rest/UserRestful';
+import {CSRF} from './rest/CSRFRestful';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 import EN from "./translate/en.json";
 import ZH from "./translate/zh.json";
@@ -24,7 +25,8 @@ class App extends PureComponent{
       wannaSignin: false,
       displayingName: '',
       tabToggled: false,
-      modalWindowNumber: 0
+      modalWindowNumber: 0,
+      csrfToken: ''
     }
 
     this.ModalWindowMap = {
@@ -42,6 +44,9 @@ class App extends PureComponent{
   }
 
   componentDidMount(){
+    //fetch the CSRF token
+    CSRF((err, data)=>this.setState({csrfToken: data.csrfToken}));
+
     //on app loading check the login status and change the header
     AmIin((err, data) => {
       const displayingName = data ? (data.message.nickname || data.message.username) : null;
@@ -95,7 +100,8 @@ class App extends PureComponent{
   }
 
   render(){
-    const {loginFlag, searchResults, wannaSignin, displayingName, tabToggled, modalWindowNumber, language} = this.state;
+    const {loginFlag, searchResults, wannaSignin, displayingName,
+      tabToggled, modalWindowNumber, language, csrfToken} = this.state;
     const LANGUAGE = language === 'zh' ? ZH : EN;
 
     return(
@@ -106,7 +112,7 @@ class App extends PureComponent{
           {wannaSignin ?
             <SigninPanel
             onClosingSigninBox={() => this.setState({wannaSignin: false})}
-            onSigninStatus={this.onSigninStatus}/>
+            onSigninStatus={this.onSigninStatus} csrfToken={csrfToken}/>
             : null}
 
           <div className={wannaSignin || (modalWindowNumber > 0) ? 'blurBg' : ''}>

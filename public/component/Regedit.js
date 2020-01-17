@@ -45,10 +45,10 @@ class RegeditPanel extends Component{
     e.preventDefault();
 
     const {username, password, nickname, isUsernameValidated, isPasswordValidated} = this.state;
-    const {onSigninStatus} = this.props;
+    const {onSigninStatus, csrfToken} = this.props;
 
     if(isUsernameValidated && isPasswordValidated){
-      NewUser({username, password, nickname}, (err, data) => {
+      NewUser(username, password, nickname, csrfToken, (err, data) => {
         if(err)return this.setState({message: <FormattedMessage id="login-server-err"/>});
         //here the message comes errocode from backend, a better way is to map the errocode to a specific message constant
         if(!data.success)return this.setState({message: data.message == '19' ? <FormattedMessage id="reg-username-taken"/> : data.message});

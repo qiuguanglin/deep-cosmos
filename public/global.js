@@ -19,6 +19,7 @@ const RemoteConfig = {
   get promotionResource() {return this.baseUrl + '/promotion'},
   get searchResource() {return this.baseUrl + '/search'},
   get dataResource() {return this.baseUrl + '/data'},
+  get csrfToken() {return this.baseUrl + '/csrf'},
 }
 
 export {RestRequester, RemoteConfig}

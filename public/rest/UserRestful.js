@@ -4,11 +4,12 @@ import {RestRequester, RemoteConfig} from '../global';
 
 const {userRerouce} = RemoteConfig;
 
-const NewUser = ({username, password, nickname}, callback) =>{
+const NewUser = (username, password, nickname, csrfToken, callback) =>{
   RestRequester.post(`${userRerouce}/newUser`, {
     username,
     pass: password,
-    nickname
+    nickname,
+    _csrf: csrfToken
   }).then(res=>callback(null, res.data))
   .catch(err=>callback(err));
 }
@@ -20,15 +21,16 @@ const AmIin = callback => {
 }
 
 const Signout = callback => {
-  RestRequester.delete(`${userRerouce}/signout`)
+  RestRequester.get(`${userRerouce}/signout`)
   .then(res=>callback(null, res.data))
   .catch(err=>callback(err));
 }
 
-const LoginUser = (username, password, callback) =>{
+const LoginUser = (username, password, csrfToken, callback) =>{
   RestRequester.post(`${userRerouce}/login`, {
     username,
-    pass: password
+    pass: password,
+    _csrf: csrfToken
   }).then(res=>callback(null, res.data))
   .catch(err=>callback(err));
 }

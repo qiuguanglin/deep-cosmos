@@ -21,10 +21,10 @@ class LoginPanel extends Component{
   onSubmitHandler(e){
     e.preventDefault();
     const {username, password} = this.state;
-    const {onSigninStatus} = this.props;
+    const {onSigninStatus, csrfToken} = this.props;
 
     if(username && password){
-      LoginUser(username, password, (err, data)=>{
+      LoginUser(username, password, csrfToken, (err, data)=>{
         if(err)return this.setState({message: <FormattedMessage id="login-server-err"/>});
         if(!data.success)return this.setState({message: <FormattedMessage id="login-err-message"/>});
 
@@ -44,6 +44,7 @@ class LoginPanel extends Component{
 
   render(){
     const {username, password, message} = this.state;
+
     return(
       <div>
         <form onSubmit={this.onSubmitHandler}>
