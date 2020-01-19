@@ -26,7 +26,6 @@ class App extends PureComponent{
       displayingName: '',
       tabToggled: false,
       modalWindowNumber: 0,
-      csrfToken: ''
     }
 
     this.ModalWindowMap = {
@@ -45,7 +44,7 @@ class App extends PureComponent{
 
   componentDidMount(){
     //fetch the CSRF token
-    CSRF((err, data)=>this.setState({csrfToken: data.csrfToken}));
+    CSRF((err, data)=>{});
 
     //on app loading check the login status and change the header
     AmIin((err, data) => {
@@ -112,7 +111,7 @@ class App extends PureComponent{
           {wannaSignin ?
             <SigninPanel
             onClosingSigninBox={() => this.setState({wannaSignin: false})}
-            onSigninStatus={this.onSigninStatus} csrfToken={csrfToken}/>
+            onSigninStatus={this.onSigninStatus}/>
             : null}
 
           <div className={wannaSignin || (modalWindowNumber > 0) ? 'blurBg' : ''}>

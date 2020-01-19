@@ -21,12 +21,15 @@ class LoginPanel extends Component{
   onSubmitHandler(e){
     e.preventDefault();
     const {username, password} = this.state;
-    const {onSigninStatus, csrfToken} = this.props;
+    const {onSigninStatus} = this.props;
 
     if(username && password){
-      LoginUser(username, password, csrfToken, (err, data)=>{
+      LoginUser(username, password, (err, data)=>{
         if(err)return this.setState({message: <FormattedMessage id="login-server-err"/>});
-        if(!data.success)return this.setState({message: <FormattedMessage id="login-err-message"/>});
+        if(!data.success){
+          if(data.message === 'EBADCSRFTOKEN')return; //happens when CSRF attact being conducted
+          return this.setState({message: <FormattedMessage id="login-err-message"/>});
+        }
 
         const displayingName = data.message.nickname || data.message.username;
         onSigninStatus({isSuccess: data.success, displayingName});
