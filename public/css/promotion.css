@@ -4,15 +4,17 @@
 }
 
 #promotion-info{
+  width:100%;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 33.6% 33.6% 33.6%
 }
 
 .promotion-pad{
   cursor: pointer;
-  width: 310px;
+  width: 94%;
   border: 1px solid GRAY;
-  margin: 10px;
+  margin: 0px 0px 20px 0px;
   border-radius: 4px;
 }
 .promotion-pad img{
