@@ -39,7 +39,6 @@ class App extends PureComponent{
     this.onSearchResult = this.onSearchResult.bind(this);
     this.onTabToggled = this.onTabToggled.bind(this);
     this.onToggleInfoWindow = this.onToggleInfoWindow.bind(this);
-    this.currencyFormatRegx = /(\d)(?=(\d{3})+\.)/g;
   }
 
   componentDidMount(){
@@ -137,10 +136,10 @@ class App extends PureComponent{
 
               <div id="main-tab-content">
                 {
-                  tabToggled ? (<PromotionPanel language={language} currencyFormatRegx={this.currencyFormatRegx}/>) : (
+                  tabToggled ? (<PromotionPanel language={language}/>) : (
                     <div>
                       <SearchPanel onSearchResult={this.onSearchResult} language={language}/>
-                      <SearchResultPanel results={searchResults} currencyFormatRegx={this.currencyFormatRegx} language={language}/>
+                      <SearchResultPanel results={searchResults} language={language}/>
                     </div>
                   )
                 }

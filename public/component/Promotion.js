@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import {PromotionList} from '../rest/PromotionRestful';
+import NumberFormat from '../util/NumberFormat';
 
 class PromotionPanel extends PureComponent{
   constructor(props){
@@ -22,7 +23,7 @@ class PromotionPanel extends PureComponent{
 
   render(){
     const {isLoaded, promotions} = this.state;
-    const {currencyFormatRegx, language} = this.props;
+    const {language} = this.props;
     const isEn = language !== 'zh';
 
     const promotionPad = (isLoaded && promotions.length) ?
@@ -35,8 +36,8 @@ class PromotionPanel extends PureComponent{
           <span className="promotion-detail">{isEn ? prom['en-detail'] : prom.detail}</span>
           <br/>
           <span className="amazing-price">
-            {(isEn ? ['On Sale', 'Low Price', 'Sold At'] : ['惊爆价', '低至', '特价'])[parseInt(Math.random() * 3)]}
-            {prom.price.toFixed(2).replace(currencyFormatRegx, '$1,')}
+            {(isEn ? ['On Sale', 'Low As', 'Sold At'] : ['惊爆价', '低至', '特价'])[parseInt(Math.random() * 3)]}
+            {NumberFormat(prom.price)}
           </span>
         </h4>
       </div>

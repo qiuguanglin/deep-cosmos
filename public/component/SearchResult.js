@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import {FormattedMessage} from 'react-intl';
+import NumberFormat from '../util/NumberFormat';
 
 class SearchResultPanel extends PureComponent{
   constructor(props){
@@ -7,13 +8,13 @@ class SearchResultPanel extends PureComponent{
   }
 
   render(){
-    const {results, currencyFormatRegx, language} = this.props;
+    const {results, language} = this.props;
 
     let totalPrice = 0;
     let lang = language === 'zh' ? 'cname' : 'name';//deternmins the language to display
     if(results){
       //format the price as currency
-      totalPrice = results.totalPrice.toFixed(2).replace(currencyFormatRegx, '$1,');
+      totalPrice = NumberFormat(results.totalPrice);
     }
 
     const tableContent = (results && results.flights.length) ?
@@ -24,7 +25,7 @@ class SearchResultPanel extends PureComponent{
           <td>{res.stopNum}</td>
           <td>{res.stops.map(st=>st[lang]).join(', ')}</td>
           <td>{res.shuttles.map(st=>st[lang])}</td>
-          <td>{res.sectionDistance} KM</td>
+          <td>{NumberFormat(res.sectionDistance, null, 'km')}</td>
           <td>
             {res.duration.hour} <FormattedMessage id="search-result-hour"/> {res.duration.min} <FormattedMessage id="search-result-min"/>
           </td>
