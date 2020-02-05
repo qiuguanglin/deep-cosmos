@@ -42,7 +42,13 @@
   cursor: pointer;
   font-size: 1.3rem;
   color: green;
-  margin-top: 8px;
+  margin: 8px 0px 0px 0px;
+}
+.hint-3rd-party{
+  cursor: default;
+  color: GRAY;
+  margin:10px 0px;
+  text-align: center;
 }
 
 .notation{
@@ -58,7 +64,7 @@
   font-size: 1.4rem;
   border-radius: 6px;
   width: 250px;
-  margin-top: 8px;
+  margin-top: 28px;
 }
 
 .textField{
@@ -75,4 +81,12 @@
   display: block;
   color: red;
   font-size: 1.2rem;
+}
+
+#signin img{
+  cursor: pointer;
+  position: relative;
+  width: 22px;
+  margin-left: 6px;
+  top: 4px;
 }

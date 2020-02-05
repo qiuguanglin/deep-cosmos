@@ -37,6 +37,7 @@
   "login-err-message": "账号或密码不正确",
   "login-server-err": "服务器错误，请稍后再试",
   "login-forgotten": "忘记密码？",
+  "login-3rd-party": "第三方账号",
   "login-tab-login": "登陆",
   "login-tab-regedit": "新账号",
   "regedit-button": "注册",

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {LoginUser} from '../rest/UserRestful';
+import {LoginUser, OAuthLogin} from '../rest/UserRestful';
 import {FormattedMessage} from 'react-intl';
 import GeneralInputPanel from './GeneralInput';
 import GeneralButtonPanel from './GeneralButton';
@@ -37,6 +37,12 @@ class LoginPanel extends Component{
     }
   }
 
+  onOAuthClick(type){
+    OAuthLogin(type, (err, redirectLink) => {
+      window.location.href=redirectLink;
+    });
+  }
+
   onUserNameChange(e){
     this.setState({username: e.target.value});
   }
@@ -61,6 +67,11 @@ class LoginPanel extends Component{
           <h4 className="hint"><FormattedMessage id="login-forgotten"/></h4>
 
           <GeneralButtonPanel type="submit" className="submit" value="login-button"/>
+
+          <h4 className="hint hint-3rd-party">
+            <FormattedMessage id="login-3rd-party"/>
+            <a onClick={this.onOAuthClick.bind(this, "github")}><img src="../resource/icon/github.png"/></a>
+          </h4>
         </form>
       </div>
     );

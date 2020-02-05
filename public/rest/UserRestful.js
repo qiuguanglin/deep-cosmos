@@ -33,4 +33,8 @@ const LoginUser = (username, password, callback) =>{
   .catch(err=>callback(err));
 }
 
-export {NewUser, AmIin, Signout, LoginUser};
+const OAuthLogin = (type, callback) => {
+  RestRequester.get(`${userRerouce}/oauth/${type}`).then(res=>callback(null, res.data));
+}
+
+export {NewUser, AmIin, Signout, LoginUser, OAuthLogin};

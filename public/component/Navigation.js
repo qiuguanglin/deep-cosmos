@@ -44,7 +44,6 @@ const Navigation = ({
       </span>
 
       <a href="https://github.com/qiuguanglin/deep-cosmos/wiki">
-        <img src="./resource/icon/github.png"/>
         <FormattedMessage id="navi-github"/>
       </a>
   </div>)

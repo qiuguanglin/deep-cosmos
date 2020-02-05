@@ -38,6 +38,7 @@
   "login-err-message": "Username Or Password Incorrect",
   "login-server-err": "Server Error",
   "login-forgotten": "Forget Password?",
+  "login-3rd-party": "login with",
   "login-tab-login": "Login",
   "login-tab-regedit": "Register",
   "reg-username-taken": "User Name Is Taken",
