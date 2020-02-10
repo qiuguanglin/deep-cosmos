@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import {FormattedMessage} from 'react-intl';
 import NumberFormat from '../util/NumberFormat';
+import '../css/result.css';
 
 class SearchResultPanel extends PureComponent{
   constructor(props){

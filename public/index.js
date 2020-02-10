@@ -14,6 +14,8 @@ import {CSRF} from './rest/CSRFRestful';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 import EN from "./translate/en.json";
 import ZH from "./translate/zh.json";
+import './css/root.css';
+import './css/main.css';
 
 class App extends PureComponent{
   constructor(){

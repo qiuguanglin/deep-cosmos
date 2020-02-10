@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {FormattedMessage} from 'react-intl';
+import '../css/top.css';
 
 class TopPanel extends Component{
   constructor(){

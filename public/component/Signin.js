@@ -3,6 +3,7 @@ import RegeditPanel from './Regedit';
 import LoginPanel from './Login';
 import Logo from './Logo';
 import {FormattedMessage} from 'react-intl';
+import '../css/signin.css';
 
 class SigninPanel extends Component{
   constructor(props){

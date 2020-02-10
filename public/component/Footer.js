@@ -1,5 +1,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
+import '../css/footer.css';
 
 const FooterPanel = ()=>{
   return(

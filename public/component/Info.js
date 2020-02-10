@@ -3,6 +3,7 @@
 import React from 'react';
 import Logo from './Logo';
 import CornerClosePanel from './CornerClose';
+import '../css/info.css';
 
 const InfoPanel = ({title, content, onToggleInfoWindow, createHTML}) => {
   return (

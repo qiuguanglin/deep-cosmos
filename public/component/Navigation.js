@@ -1,6 +1,7 @@
 import React from 'react';
 import {Signout} from '../rest/UserRestful';
 import {FormattedMessage} from 'react-intl';
+import '../css/navigation.css';
 
 const Navigation = ({
   onLanguageChanged, onSigninClick, onToggleInfoWindow,

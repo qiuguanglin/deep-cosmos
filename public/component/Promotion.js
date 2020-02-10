@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import {PromotionList} from '../rest/PromotionRestful';
 import NumberFormat from '../util/NumberFormat';
+import '../css/promotion.css';
 
 class PromotionPanel extends PureComponent{
   constructor(props){

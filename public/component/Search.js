@@ -4,6 +4,7 @@ import {Data} from '../rest/DataRestful';
 import GeneralInputPanel from './GeneralInput';
 import {FormattedHTMLMessage, FormattedMessage} from 'react-intl';
 import GeneralButtonPanel from './GeneralButton';
+import '../css/search.css';
 
 class SearchPanel extends PureComponent{
   constructor(props){

@@ -19,6 +19,10 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
@@ -26,11 +30,9 @@ module.exports = {
     new HTMLWebPackPlugin({
       template: "./public/index.html",
       filename: "./index.html",
-      chunks: ['index']
     }),
     new CopyWebpackPlugin([
-      { from: 'public/resource' , to: 'resource' },
-      { from: 'public/css' , to: 'css' }
+      { from: 'public/resource' , to: 'resource' }
     ])
   ]
 }
