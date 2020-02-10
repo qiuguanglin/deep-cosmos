@@ -3,6 +3,7 @@ import {LoginUser, OAuthLogin} from '../rest/UserRestful';
 import {FormattedMessage} from 'react-intl';
 import GeneralInputPanel from './GeneralInput';
 import GeneralButtonPanel from './GeneralButton';
+import githubIcon from '../resource/icon/github.png'
 
 class LoginPanel extends Component{
   constructor(props){
@@ -70,7 +71,7 @@ class LoginPanel extends Component{
 
           <h4 className="hint hint-3rd-party">
             <FormattedMessage id="login-3rd-party"/>
-            <a onClick={this.onOAuthClick.bind(this, "github")}><img src="../resource/icon/github.png"/></a>
+            <a onClick={this.onOAuthClick.bind(this, "github")}><img src={githubIcon}/></a>
           </h4>
         </form>
       </div>

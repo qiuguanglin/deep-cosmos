@@ -1,6 +1,11 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import '../css/footer.css';
+import houseIcon from '../resource/icon/house.png';
+import instIcon from '../resource/icon/inst.png';
+import twitterIcon from '../resource/icon/twitter.png';
+import lineIcon from '../resource/icon/line.png';
+import whatsappIcon from '../resource/icon/whatsapp.png';
 
 const FooterPanel = ()=>{
   return(
@@ -8,12 +13,12 @@ const FooterPanel = ()=>{
       <div id="copyright">
         <FormattedMessage id="footer-rights-reserved"/>
         <br/>
-        <img src="./resource/icon/house.png"/> <FormattedMessage id="footer-address"/>
+        <img src={houseIcon}/> <FormattedMessage id="footer-address"/>
         <h4>
-          <img src="./resource/icon/twitter.png"/>
-          <img src="./resource/icon/line.png"/>
-          <img src="./resource/icon/inst.png"/>
-          <img src="./resource/icon/whatsapp.png"/>
+          <img src={twitterIcon}/>
+          <img src={lineIcon}/>
+          <img src={instIcon}/>
+          <img src={whatsappIcon}/>
         </h4>
       </div>
     </footer>

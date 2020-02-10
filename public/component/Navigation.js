@@ -2,6 +2,9 @@ import React from 'react';
 import {Signout} from '../rest/UserRestful';
 import {FormattedMessage} from 'react-intl';
 import '../css/navigation.css';
+import userIcon from '../resource/icon/user-icon.png';
+import infoIcon from '../resource/icon/info.png';
+import phoneIcon from '../resource/icon/phone.png';
 
 const Navigation = ({
   onLanguageChanged, onSigninClick, onToggleInfoWindow,
@@ -21,19 +24,19 @@ const Navigation = ({
           </span>) :
         (<span>
           <a href="#" onClick={onSigninClick}>
-            <img src="./resource/icon/user-icon.png"/>
+            <img src={userIcon}/>
             <FormattedMessage id="navi-account"/>
           </a>
         </span>)
       }
 
       <a href="#" onClick={onToggleInfoWindow} id="1">
-        <img src="./resource/icon/info.png"/>
+        <img src={infoIcon}/>
         <FormattedMessage id="navi-about"/>
       </a>
 
       <a href="#" onClick={onToggleInfoWindow} id="2">
-        <img src="./resource/icon/phone.png"/>
+        <img src={phoneIcon}/>
         <FormattedMessage id="navi-contact"/>
       </a>
 

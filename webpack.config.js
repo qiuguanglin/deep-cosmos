@@ -1,6 +1,5 @@
 var path = require('path');
 const HTMLWebPackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -23,6 +22,16 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(png|jpg)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 12000,
+            name: 'images/[hash]-[name].[ext]'
+          }
+        }
       }
     ]
   },
@@ -30,9 +39,7 @@ module.exports = {
     new HTMLWebPackPlugin({
       template: "./public/index.html",
       filename: "./index.html",
-    }),
-    new CopyWebpackPlugin([
-      { from: 'public/resource' , to: 'resource' }
-    ])
+      favicon: "./public/resource/icon/d-icon.png"
+    })
   ]
 }

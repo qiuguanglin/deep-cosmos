@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {FormattedMessage} from 'react-intl';
 import '../css/top.css';
+import cosmosIcon from '../resource/cosmos.png';
 
 class TopPanel extends Component{
   constructor(){
@@ -19,7 +20,7 @@ class TopPanel extends Component{
           <span><FormattedMessage id="top-h2-right"/></span>
         </h2>
         <h3>
-          <img src="../resource/cosmos.png"/>
+          <img src={cosmosIcon}/>
         </h3>
       </div>
     );

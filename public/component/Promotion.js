@@ -30,7 +30,7 @@ class PromotionPanel extends PureComponent{
     const promotionPad = (isLoaded && promotions.length) ?
     promotions.map(prom =>
       <div className="promotion-pad" key={prom.id}>
-        <img src={`./resource/promotion/${prom.id}.jpg`}/>
+        <img src={require(`../resource/promotion/${prom.id}.jpg`).default}/>
         <h4 className="promotion-desc">
           <span className="promotion-title">{isEn ? prom['en-title'] : prom.title}</span>
           <br/>

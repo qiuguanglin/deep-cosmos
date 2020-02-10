@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import {FormattedMessage} from 'react-intl';
 import NumberFormat from '../util/NumberFormat';
 import '../css/result.css';
+import cartIcon from '../resource/icon/cart.png';
 
 class SearchResultPanel extends PureComponent{
   constructor(props){
@@ -35,7 +36,7 @@ class SearchResultPanel extends PureComponent{
 
     const purchaseContent = results ?
       <tr id="search-purchaseContent"><td colSpan="7">
-        <img src="../resource/icon/cart.png"/>
+        <img src={cartIcon}/>
         <FormattedMessage id="search-purchase-price"/> <strong>{totalPrice}</strong>
         <button className="general-submit-btn search-purchase-button"><FormattedMessage id="search-purchase"/></button>
       </td></tr> : null
