@@ -1,5 +1,6 @@
 var path = require('path');
 const HTMLWebPackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -41,5 +42,12 @@ module.exports = {
       filename: "./index.html",
       favicon: "./public/resource/icon/d-icon.png"
     })
-  ]
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin({
+      test: /\.js$/,
+      exclude: /node_modules/
+    })],
+  }
 }
