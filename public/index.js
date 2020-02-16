@@ -122,6 +122,7 @@ class App extends PureComponent{
             onToggleInfoWindow={this.onToggleInfoWindow}
             loginFlag={loginFlag}
             displayingName={displayingName}
+            defaultLang={language}
             />
 
             <TopPanel/>
