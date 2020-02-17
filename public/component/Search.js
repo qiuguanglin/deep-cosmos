@@ -104,8 +104,6 @@ class SearchPanel extends PureComponent{
     }
   }
 
-
-
   render(){
     const {date, beginning, destination, message, isInputInvalid, planetList} = this.state;
     const {language}=this.props;
